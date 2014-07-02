@@ -1,0 +1,38 @@
+Characters
+Protagovitch: hero
+Antagovitch: villain
+Protagovitch's Mom: mentor/family
+Donovitch: Donor
+Doppelovsky: Fake hero
+Protagslova: love interest
+
+Settings:
+Doma Village:
+	-Protagovitch's house
+		-Protagovitch's living room
+		-Protagovitch's kitchen
+		-Protagovitch's bedroom
+		-Protagovitch's Outhouse
+		-Protagovitch's Well
+Zapovednik Forest
+	-Baba Yaga's House on Chicken Legs
+The Distant Kingdom of Barbistan
+Castle Zamok
+The Zhipovisny Mountains
+The Bottom of the Glubok Sea
+Borbamecha Field
+Zhidky River
+
+Quest items:
+ring
+amulet
+sword
+beans
+stone
+wand
+potion
+gear
+feather of firebird
+scale of dragon
+tooth of hammerhead shark
+
