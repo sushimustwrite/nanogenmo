@@ -5,6 +5,10 @@ Protagovitch's Mom: mentor/family
 Donovitch: Donor
 Doppelovsky: Fake hero
 Protagslova: love interest
+Snezana: Snow White
+Karzelek: Dwarves
+Gamayun: Sphinx w/ bird feet and boobs
+Centaurs
 
 Settings:
 Doma Village:
@@ -16,23 +20,62 @@ Doma Village:
 		-Protagovitch's Well
 Zapovednik Forest
 	-Baba Yaga's House on Chicken Legs
+Prizrak Forest
+    -Vucargorod
 The Distant Kingdom of Barbistan
-Castle Zamok
+Castle Zamok in Zamok Empire
 The Zhipovisny Mountains
+The Zaostrenny Mountains
 The Bottom of the Glubok Sea
+    -Syvatskala
 Borbamecha Field
 Zhidky River
+Drugoy River
+Crabtown
+Magorod
+Odinokorod
+Coracean
+Sukhoy Desert
+Shrifta (dwarf village)
+Boloto Swamp
+
 
 Quest items:
-ring
-amulet
-sword
-beans
-stone
-wand
-potion
-gear
-feather of firebird
+Ring of Unseen Servant (Donovitch)
+Amulet of Sleep (dwarves)
+Sword of Penetration (swamp)
+beans - instant tree (goat king)
+Sandworm's Eye: produces scorpions
+Wand of Blowing Shit Up (centaurs)
+Potion of True Seeing (demon)
+Bag of Holding - Baba Yaga
+feather of firebird - heal
 scale of dragon
-tooth of hammerhead shark
+anvil of hammerhead shark
+Shtativ's third leg
+Crab King's Crown
+Key to Zamok Castle
+Thousand-League Boots (vila)
+Infinite Pitcher (water demons)
+De-Illuminator (troll)
+Bubblehead Potion (Crab Town)
+
+
+Monsters:
+Hammerhead Shark
+Firebird
+Trolls
+Doooooooolgo the Dragon ("That's an awfully long name." "It's an awfully long dragon.")
+Shtativ the Three-legged Ghost Bandit
+15 foot crabs
+Crab King
+Vila the Vila - chaotic neutral
+Topielec - drowned sailors
+Werewolves
+Pauk the giant Spider
+Goat Kingdom
+Pesoky the Sandworm
+R.O.U.S.es
+Psoglav
+
 
