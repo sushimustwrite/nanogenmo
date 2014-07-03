@@ -1,0 +1,31 @@
+Character
+-Name
+-Physical Attributes
+-Location
+-Items
+-Goal object (graph)
+-Knowledge
+--Where item is
+--What item does
+--Other character
+---Nonmental
+---Anything been told
+-Relationship
+-Verbs
+-Catchphrase
+
+Map-graph of:
+Location
+-adjacent locations (direction)
+-sublocations
+-items
+-characters
+-physical attributes
+-catchphrase
+
+Items
+-physical attributes
+-conditions to use
+-abilities unlocked
+-subitems
+-catchphrase

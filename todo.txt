@@ -1,0 +1,6 @@
+Create characters
+Create goal graph
+Turn map into map graph
+Create items
+
+Rules of the game (how does this all work together)
