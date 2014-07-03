@@ -1,6 +1,8 @@
 Character
 -Name
 -Physical Attributes
+-Mood
+-History Object (list of Events: date, location, action taken, state changed)
 -Location
 -Items
 -Goal object (graph)
@@ -16,11 +18,17 @@ Character
 
 Map-graph of:
 Location
--adjacent locations (direction)
--sublocations
+-incident Route objects
+-submaps
 -items
 -characters
 -physical attributes
+-catchphrase
+
+Route
+-2 incident Locations
+-actions needed to use route
+-characters
 -catchphrase
 
 Items
