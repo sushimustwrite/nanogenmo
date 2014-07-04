@@ -1,4 +1,4 @@
-Characters
+Characters:
 Protagovitch: hero
 Antagovitch: villain
 Protagovitch's Mom: mentor/family
@@ -9,6 +9,9 @@ Snezana: Snow White
 Karzelek: Dwarves
 Gamayun: Sphinx w/ bird feet and boobs
 Centaurs
+Hag of Odinokorod
+Odinovski, Zvaski, Triski, Chetyrski, Pyatski, Shestski
+
 
 Settings:
 Doma Village:
@@ -23,7 +26,13 @@ Zapovednik Forest
 Prizrak Forest
     -Vucargorod
 The Distant Kingdom of Barbistan
-Castle Zamok in Zamok Empire
+Castle Zamok in Zamok Empire (requires a KEY, and besides ANTAGOVITCH IS NOT HOME - steal his CHARISMA ITEM?)
+    -Odinovski's Castle (BIG THICK WALLS)
+    -Zvaski's Castle (wreathed in fire)
+    -Triski's Castle (can clone himself-entire castle staff is just him)
+    -Chetyrski's Castle (dark behind a waterfall)
+    -Pyatski's Castle (on a volcano)
+    -Shestski's Castle (on a cloud)
 The Zhipovisny Mountains
 The Zaostrenny Mountains
 The Bottom of the Glubok Sea
@@ -41,24 +50,26 @@ Boloto Swamp
 
 
 Quest items:
-Ring of Unseen Servant (Donovitch)
-Amulet of Sleep (dwarves)
-Sword of Penetration (swamp)
-beans - instant tree (goat king)
-Sandworm's Eye: produces scorpions
-Wand of Blowing Shit Up (centaurs)
-Potion of True Seeing (demon)
-Bag of Holding - Baba Yaga
-feather of firebird - heal
-scale of dragon
-anvil of hammerhead shark
-Shtativ's third leg
-Crab King's Crown
-Key to Zamok Castle
-Thousand-League Boots (vila)
-Infinite Pitcher (water demons)
-De-Illuminator (troll)
+Ring of Unseen Servant (Donovitch) (used mostly in battle, or to accomplish the "impossible task")
+Amulet of Sleep (dwarves) (used to put King Crab to sleep while his crown is stolen)
+Sword of Penetration (swamp) (to battle antagovitch)
+beans - instant tree (goat king) (can use to get into cloud palace: climb the tree. also to get out of jail.)
+Sandworm's Eye: produces scorpions (can be used to battle one of the minor kings, who is able to clone himself tweedle-dee style)
+Wand of Blowing Shit Up (centaurs) (the first minor king castle has stone ten feet thick and won't open up the equally thick door)
+Potion of True Seeing (demon) (to help the king spot the false hero)
+Bag of Holding - Baba Yaga (to carry non-wearables - should be discovered early on)
+feather of firebird - glows and inspires (one of the 6 minor kings has an depressing, inky dark castle behind a waterfall)
+scale of dragon - fire shield (one of the six minor kings lives in a volcano)
+anvil of hammerhead shark - can increase in size at owner's will (used to anchor one of the six minor king's cloud palace)
+Shtativ's third leg - gets you the Watchtower Key from Odinokorod's hag
+Crab King's Crown - ability to raise and rock from the earth (one of the minor kings lives in a deep pit with sheer sides)
+Key to Zamok Castle SECRET ENTRANCE - appears at the top of the Watchtower in Barbistan only during a solar eclipse (using De-Illuminator on sun can fetch it)
+Thousand-League Boots (vila) (to pursue and evade pursuer)
+Infinite Pitcher (water demons) (one of the minor kings lives in a castle surrounded by fire)
+De-Illuminator (troll) (used to manifest the Zamok key)
 Bubblehead Potion (Crab Town)
+Scepter of Command - Antagovitch's charisma item
+
 
 
 Monsters:
@@ -77,5 +88,5 @@ Goat Kingdom
 Pesoky the Sandworm
 R.O.U.S.es
 Psoglav
-
+The tempter arm-wrestling demon (what name again?)
 
