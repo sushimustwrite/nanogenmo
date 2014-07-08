@@ -62,13 +62,16 @@ feather of firebird - glows and inspires (one of the 6 minor kings has an depres
 scale of dragon - fire shield (one of the six minor kings lives in a volcano)
 anvil of hammerhead shark - can increase in size at owner's will (used to anchor one of the six minor king's cloud palace)
 Shtativ's third leg - gets you the Watchtower Key from Odinokorod's hag
-Crab King's Crown - ability to raise and rock from the earth (one of the minor kings lives in a deep pit with sheer sides)
+Crab King's Crown - ability to raise diamonds from the earth (one of the minor kings lives in a deep pit with sheer sides)
 Key to Zamok Castle SECRET ENTRANCE - appears at the top of the Watchtower in Barbistan only during a solar eclipse (using De-Illuminator on sun can fetch it)
 Thousand-League Boots (vila) (to pursue and evade pursuer)
 Infinite Pitcher (water demons) (one of the minor kings lives in a castle surrounded by fire)
 De-Illuminator (troll) (used to manifest the Zamok key)
 Bubblehead Potion (Crab Town)
+Golden Egg (Ziz)
+Eternal Fried Chicken (Ziz - if you kill it with fire)
 Scepter of Command - Antagovitch's charisma item
+Amulet of regeneration - from werewolf blood!
 
 
 
@@ -76,7 +79,7 @@ Monsters:
 Hammerhead Shark
 Firebird
 Trolls
-Doooooooolgo the Dragon ("That's an awfully long name." "It's an awfully long dragon.")
+Doooooooolgo the Dragon ("That's an awfully long name." "It's an awfully long dragon.") ("What's long, brown and sticky, and breathes fire? Doooooooolgo!")
 Shtativ the Three-legged Ghost Bandit
 15 foot crabs
 Crab King
@@ -89,4 +92,5 @@ Pesoky the Sandworm
 R.O.U.S.es
 Psoglav
 The tempter arm-wrestling demon (what name again?)
+Ziz
 
