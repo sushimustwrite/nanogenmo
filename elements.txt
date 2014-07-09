@@ -11,6 +11,7 @@ Gamayun: Sphinx w/ bird feet and boobs
 Centaurs
 Hag of Odinokorod
 Odinovski, Zvaski, Triski, Chetyrski, Pyatski, Shestski
+Random Characters (rumors)
 
 
 Settings:
@@ -47,6 +48,7 @@ Coracean
 Sukhoy Desert
 Shrifta (dwarf village)
 Boloto Swamp
+Random Villages (rumors)
 
 
 Quest items:
