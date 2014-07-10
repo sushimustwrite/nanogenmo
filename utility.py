@@ -5,7 +5,7 @@ def random_word():
 	import random
 	word = random.choice(['a','o','i','u','y','a','o','y','','','','','','','','','','','','','','','','','','','','','','','',''])
 	numsyllables = random.randint(2,5) #between 2 and 5 syllables
-	consonants = ['b','ch','d','f','g','h','k','l','m','n','p','r','s','t','v','z','sl','dr','kh','kr','pr','st','zh']
+	consonants = ['b','ch','d','g','h','k','l','m','n','p','r','s','t','v','z','sl','dr','kh','kr','pr','st','zh']
 	vowels = ['a','e','i','o','u','y']
 	
 	for i in range(numsyllables):

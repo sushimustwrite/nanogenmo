@@ -55,7 +55,7 @@ Quest items:
 Ring of Unseen Servant (Donovitch) (used mostly in battle, or to accomplish the "impossible task")
 Amulet of Sleep (dwarves) (used to put King Crab to sleep while his crown is stolen)
 Sword of Penetration (swamp) (to battle antagovitch)
-beans - instant tree (goat king) (can use to get into cloud palace: climb the tree. also to get out of jail.)
+beans - instant tree (Odinsky's Castle) (can use to get into cloud palace: climb the tree. also to get out of jail.)
 Sandworm's Eye: produces scorpions (can be used to battle one of the minor kings, who is able to clone himself tweedle-dee style)
 Wand of Blowing Shit Up (centaurs) (the first minor king castle has stone ten feet thick and won't open up the equally thick door)
 Potion of True Seeing (demon) (to help the king spot the false hero)
@@ -66,7 +66,7 @@ anvil of hammerhead shark - can increase in size at owner's will (used to anchor
 Shtativ's third leg - gets you the Watchtower Key from Odinokorod's hag
 Crab King's Crown - ability to raise diamonds from the earth (one of the minor kings lives in a deep pit with sheer sides)
 Key to Zamok Castle SECRET ENTRANCE - appears at the top of the Watchtower in Barbistan only during a solar eclipse (using De-Illuminator on sun can fetch it)
-Thousand-League Boots (vila) (to pursue and evade pursuer)
+Thousand-League Boots (vila) (fast travel over land)
 Infinite Pitcher (water demons) (one of the minor kings lives in a castle surrounded by fire)
 De-Illuminator (troll) (used to manifest the Zamok key)
 Bubblehead Potion (Crab Town)
@@ -74,6 +74,8 @@ Golden Egg (Ziz)
 Eternal Fried Chicken (Ziz - if you kill it with fire)
 Scepter of Command - Antagovitch's charisma item
 Amulet of regeneration - from werewolf blood!
+perfect change purse (goat king) - used to buy food and get into the palace
+ghost ship (topielec) - fast travel to places adjacent to water
 
 
 
