@@ -1,5 +1,6 @@
 Character
 -Name
+-Pronouns
 -Physical Attributes
 -Mood
 -History Object (list of Events: date, location, action taken, state changed)
@@ -28,6 +29,7 @@ Location
 Route
 -2 incident Locations
 -actions needed to use route
+ -"travel" should include chance of random encounter in random village with random characters. we can pick these from a stock set of random Events.
 -characters
 -catchphrase
 
@@ -41,17 +43,25 @@ Items
 State
 -on/off method (checks all inputs and see if any are satisfied and that none of the negated inputs have been satisfied, returns a boolean)
 -list of ordered lists of Edges (inputs)
+-the character this state is for
 -positive Actions
 -negative Actions
--update method called whenever state achieved (takes character as argument)
+-update method called whenever state achieved (IS THIS NECESSARY?)
 
 Action
 -list of Edges
--list of Characters who are permitted to perform
+-Event that fires on success
+-Event that fires on failure
+-probability of success
 -update method (sets all Edges)
 
 Edge
 -permanent? (should this Edge remain on if it is ever turned on once?)
 -on/off? (a boolean set when the precondition is met and the action is performed)
 -on/off method (checks the on/off boolean and checks the precondition. if the precondition is not satisfied and this edge is not permanent, sets the on/off boolean false. returns value of on/off boolean
--negated? (should this Edge make the target State turn off?)
+
+Event
+-character
+-location
+-description
+-function to any state changes to location and character
