@@ -3,5 +3,12 @@ Create goal graph
 Map cities/villages/important buildings
 Turn map into map graph
 Create items
-
 Rules of the game (how does this all work together)
+
+
+Create some test characters locations items
+add stuff to connect characters locations object back to states
+
+COME UP WITH THE ALGORITHM THAT TURNS STATES AND GOALS INTO ACTIONS (how to get there from here)
+
+Map class: needs pathfinding algorithm. what else? 

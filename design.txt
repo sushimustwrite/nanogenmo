@@ -3,7 +3,6 @@ Character
 -Pronouns
 -Physical Attributes
 -Mood
--History Object (list of Events: date, location, action taken, state changed)
 -Location
 -Items
 -List of goals (pointers to states)
@@ -13,6 +12,11 @@ Character
 --Other character
 ---Nonmental
 ---Anything been told
+-Knowledge:
+--a dictionary of location names mapped to pruned location objects (with all unknown details deleted) (default known: name, catchphrase, corresponding State)
+--a dictionary of items named mapped to pruned item objects (default known if at all: name, catchphrase)
+--a dictionary of character names mapped to pruned character objects (default: name, attributes, catchphrase)
+--a dictionary of dates mapped to events
 -Relationship
 -Verbs
 -Catchphrase
@@ -25,6 +29,7 @@ Location
 -characters
 -physical attributes
 -catchphrase
+-corresponding State
 
 Route
 -2 incident Locations
@@ -37,6 +42,7 @@ Items
 -physical attributes
 -conditions to use
 -abilities unlocked
+-corresponding State
 -subitems
 -catchphrase
 
