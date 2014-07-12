@@ -1,14 +1,5 @@
 # -*- coding: utf-8 -*-
 class State:
-    #positive actions are those that can be taken when this state is on
-    postiveactions = []
-    #negative actions are those that can be taken when this state is off
-    negativeactions = []
-    #inputs are lists of edges
-    inputs = {}
-    #same
-    negatedinputs = {}
-    #whether the arrival event has triggered
     triggered = False
     def __init__(self,name,namepast,character, event_arrival):
         #name should be statable as a goal to be achieved, such as "make the princess marry me" or "get the Sword of Penetration"
@@ -19,7 +10,15 @@ class State:
         self.character = character
         #event that triggers the first time this state is reached
         self.event_arrival = event_arrival
-        pass
+        #positive actions are those that can be taken when this state is on
+        self.postiveactions = []
+        #negative actions are those that can be taken when this state is off
+        self.negativeactions = []
+        #inputs are lists of edges
+        self.inputs = {}
+        #same
+        self.negatedinputs = {}
+        #whether the arrival event has triggered
     
     def add_action(self, actionobject, negative=False):
         if negative:
