@@ -11,4 +11,6 @@ add stuff to connect characters locations object back to states
 
 COME UP WITH THE ALGORITHM THAT TURNS STATES AND GOALS INTO ACTIONS (how to get there from here)
 
-Map class: needs pathfinding algorithm. what else? 
+Map class: needs pathfinding algorithm. what else?
+
+add string prints to all of Character's actions

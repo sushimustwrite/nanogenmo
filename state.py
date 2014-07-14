@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class State:
     triggered = False
-    def __init__(self,name,namepast,character, event_arrival):
+    def __init__(self,name,namepast,character, event_arrival=None):
         #name should be statable as a goal to be achieved, such as "make the princess marry me" or "get the Sword of Penetration"
         self.name = name
         #namepast should be statable as a goal achieved/fact about the world which can follow a form of "to be", such as "married to the princess" or "carrying the Sword of Penetration"

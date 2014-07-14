@@ -62,7 +62,7 @@ Action
 -update method (sets all Edges)
 
 Edge
--permanent? (should this Edge remain on if it is ever turned on once?)
+    -permanent? (should this Edge remain on if it is ever turned on once?)
 -on/off? (a boolean set when the precondition is met and the action is performed)
 -on/off method (checks the on/off boolean and checks the precondition. if the precondition is not satisfied and this edge is not permanent, sets the on/off boolean false. returns value of on/off boolean
 
