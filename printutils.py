@@ -19,3 +19,13 @@ def return_double(string, pronouns1, pronouns2):
     string = string.replace('#ref1',pronouns1['reflex'])
     string = string.replace('#ref2',pronouns2['reflex'])
     return string
+
+masculine = {'subject':'he','object':'him','subj_possess':'his','obj_possess':'his','reflex':'himself'}
+feminine = {'subject':'she','object':'her','subj_possess':'her','obj_possess':'hers','reflex':'herself'}
+neuter = {'subject':'it','object':'it','subj_possess':'its','obj_possess':'its', 'reflex':'itself'}
+neutral = {'subject':'ze','object':'hir','subj_possess':'hir','obj_possess':'hirs','reflex':'hirself'}
+first_singular = {'subject':'I','object':'me','subj_possess':'my','obj_possess':'mine','reflex':'myself'}
+first_plural = {'subject':'we','object':'us','subj_possess':'our','obj_possess':'ours','reflex':'ourselves'}
+second_singular = {'subject':'you','object':'you','subj_possess':'your','obj_possess':'yours','reflex':'yourself'}
+second_plural = {'subject':'you','object':'you','subj_possess':'your','obj_possess':'yours','reflex':'yourselves'}
+third_plural = {'subject':'they','object':'them','subj_possess':'their','obj_possess':'theirs','reflex':'themselves'}
