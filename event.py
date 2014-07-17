@@ -22,7 +22,7 @@ class SingleCharacterEvent(Event):
     def trigger(self):
         import printutils
         import utility
-        printutils.print_single(self.description,self.character)
+        print printutils.return_single(self.description,self.character)
         update_fun(self.character,self.location)
         date = utility.date()
         self.character.add_history(date,self)
@@ -39,7 +39,7 @@ class DoubleCharacterEvent(Event):
     def trigger(self):
         import printutils
         import utility
-        printutils.print_double(description,character1,character2)
+        print printutils.return_double(description,character1,character2)
         update_fun(character1,character2,location)
         date  = utility.date()
         self.character.add_history(date,self)
