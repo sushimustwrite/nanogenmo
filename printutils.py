@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
-def print_single(string,character):
-    string.replace('#sub',character.pronouns['subject'])
-    string.replace('#spos',character.pronouns['subj_possess'])
-    string.replace('#opos',character.pronouns['obj_possess'])
-    string.replace('#obj',character.pronouns['object'])
-    string.replace('#ref',character.pronouns['reflex'])
-    print string
+def return_single(string,pronouns):
+    string = string.replace('#sub',pronouns['subject'])
+    string = string.replace('#spos',pronouns['subj_possess'])
+    string = string.replace('#opos',pronouns['obj_possess'])
+    string = string.replace('#obj',pronouns['object'])
+    string = string.replace('#ref',pronouns['reflex'])
+    return string
     
-def print_double(string, character1, character2):
-    string.replace('#sub1',character1.pronouns['subject'])
-    string.replace('#sub2',character2.pronouns['subject'])
-    string.replace('#spos1',character1.pronouns['subj_possess'])
-    string.replace('#spos2',character2.pronouns['subj_possess'])
-    string.replace('#opos1',character1.pronouns['obj_possess'])
-    string.replace('#opos2',character2.pronouns['obj_possess'])
-    string.replace('#obj1',character1.pronouns['object'])
-    string.replace('#obj2',character2.pronouns['object'])
-    string.replace('#ref1',character1.pronouns['reflex'])
-    string.replace('#ref2',character2.pronouns['reflex'])
+def return_double(string, pronouns1, pronouns2):
+    string = string.replace('#sub1',pronouns1['subject'])
+    string = string.replace('#sub2',pronouns2['subject'])
+    string = string.replace('#spos1',pronouns1['subj_possess'])
+    string = string.replace('#spos2',pronouns2['subj_possess'])
+    string = string.replace('#opos1',pronouns1['obj_possess'])
+    string = string.replace('#opos2',pronouns2['obj_possess'])
+    string = string.replace('#obj1',pronouns1['object'])
+    string = string.replace('#obj2',pronouns2['object'])
+    string = string.replace('#ref1',pronouns1['reflex'])
+    string = string.replace('#ref2',pronouns2['reflex'])
+    return string
