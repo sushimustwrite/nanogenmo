@@ -13,10 +13,18 @@ class Character:
     offered_item = {}
     
     
-    def __init__(self, name, pronouns, catchphrase, attributes, location=None, items=None, goals=None, history=None):
+    def __init__(self, name, gender, catchphrase, attributes, location=None, items=None, goals=None, history=None):
+        import printutils
         self.name = name
         self.catchphrase = catchphrase
-        self.pronouns = pronouns
+        if gender == 'male':
+            pronouns = printutils.masculine
+        else if gender == 'female':
+            pronouns = printutil.feminine
+        else if gender == 'neuter':
+            pronouns = printutils.neuter
+        else if gender == 'neutral':
+            pronouns = neutral
         self.location = location #how would this change location
         self.attributes = attributes
         if goals is None:
