@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-#TODO:ALL THE THINGS
-#well, the rest of the things
+import printutils, random
 
 class Character:
     #range from -10 (sad) to 10 (happy)
@@ -14,7 +13,7 @@ class Character:
     
     
     def __init__(self, name, gender, catchphrase, attributes, location=None, items=None, goals=None, history=None):
-        import printutils
+
         self.name = name
         self.catchphrase = catchphrase
         if gender == 'male':
@@ -40,6 +39,9 @@ class Character:
             self.history = {}
         else:
             self.history = history
+		mood_goodbad = random.
+			
+			
     def set_location(location):
         self.location = location
         
@@ -70,24 +72,25 @@ class Character:
             
     def remove_goal(self,goal):
         goal = remember(goal)
-        if goal in goals:
-            goals.remove(goal)
+        if goal in self.goals:
+            self.goals.remove(goal)
             
     #find my own version of this object, 
     def remember(self,obj):
+		myobj=obj
         if type(obj) is Location:
-            myobj=knowledge['locations'].get(obj.name)
+            myobj=self.knowledge['locations'].get(obj.name)
         else if type(obj) is Item:
-            myobj=knowledge['items'].get(obj.name)
+            myobj=self.knowledge['items'].get(obj.name)
         else if type(obj) is Character:
-            myobj=knowledge['characters'].get(obj.name)
+            myobj=self.knowledge['characters'].get(obj.name)
         else if type(obj) is State:
-            myobj=knowledge['states'].get(obj.name)
+            myobj=self.knowledge['states'].get(obj.name)
         return myobj
         
     #add specified attributes to local version
     def learn(self,obj,attributes):
-        myobj = remember(obj)
+        myobj = self.remember(obj)
         if myobj is None:
             if type(obj) is Location:
                 knowledge['locations'][obj.name] = Location(obj.name,obj.attributes,obj.catchphrase)
@@ -106,8 +109,19 @@ class Character:
             value = getattr(obj,attr)
             #replace the referenced attribute by the one i remember: no catastrophic delivery of free information!
             if type(value) is Item or type(value) is Location or type(value) is State or type(value) is Character:
-                value = remember(value)
-            setattr(myobj,attr,value)
+                value = self.remember(value)
+			else if type(value) is list:
+				newlist = []
+				for item in list:
+					newitem = self.remember(item)
+					newlist.append(newitem)
+				value = newlist
+			else if type(value) is dict:
+				newdict = {}
+				for (key,item) in items(value):
+					newdict[key] = self.remember(item)
+				value = newdict
+			setattr(myobj,attr,value)
 
             
     def experience(self,date,event):
@@ -118,9 +132,47 @@ class Character:
     def doSomething(self):
         pass
     
-    #TODO: give another character some info
-    def tell(self,character,string):
-        pass
+    #give another character some info (which does not have to be the same type as was asked about)
+	#returns a boolean whether or not any information was given
+    def tell(self,character,obj):
+		if random.rand()>0.8:
+			self.refuse()
+			return false
+		myobj = remember(obj)
+		if myobj is None:
+			printutils.formatdialog(self.pronouns,"I'm afraid I don't know anything about that","said")
+			return false
+		
+		if myobj is Location:
+			#TODO: say its catchphrase and attributes and up to five times either: a character who is there, a route that goes there, 
+			for i in range(random.randInt(1,5)):
+				pass
+				#TODO: learn the asker the relevant info
+			return true
+		if myobj is Item:
+			#TODO: say its catchphrase and attributes and up to five times either: where it is, what it is does, or what it can accomplish (one state it can be used to get to)
+			for i in range(random.randInt(1,5)):
+				pass
+				#TODO: learn the asker the relevant info
+		if myobj is Character:
+			#TODO: say its catchphrase and attributes and up to five times either: their current location, their current goal, an item they have, a bit of history
+			for i in range(random.randInt(1,5)):
+				pass
+				#TODO: learn the asker the relevant info
+		if myobj is State:
+			if myobj.character.name != character.name:
+				printutils.formatdialog(self.pronouns,"I'm afraid you won't be able to do that at all!","explained")
+			#TODO: say up to five times: an input to this state
+			for i in range(random.randInt(1,5)):
+				pass
+				#TODO: learn the asker the relevant info
+				
+        
+	#TODO: different ways of refusing to talk to someone. these should work even if they've been talking a bit
+	def refuse():
+		refusals = ["Sorry mate, I have to get going"] #and so on
+		excuse = random.choose(refusals)
+		printutils.formatdialog(self.pronouns,excuse,"replied")
     
     #TODO name him/herself and give a random event from his/her history
     def introduce(self):
@@ -128,7 +180,8 @@ class Character:
     
     #TODO say a random exclamation
     def exclaim(self):
-        
+        pass
+		
     def go(self):
         self.location.move_along(self,route)
         
@@ -139,7 +192,6 @@ class Character:
     #TODO output some text about this action
     #TODO put things in bag of holding?
     def take(self,character,item):
-        import random
         success=True
         if not character.offering(self,item):
             if random.rand()<0.4
@@ -191,12 +243,10 @@ class Character:
         if item.name in keys(items):
             item.use()
             
-    #obj is a State, Item, or Character
+    #obj is a State, Item, Location, or Character
     def ask(self,character,obj):
-        import random
-        #TODO: phrase information request sensibly
-        if random.rand()<0.8:
-            character.tell(self)
-        else:
-            pass
-            #TODO You are not a nice man and I won't tell you!
+		#TODO: phrase information request sensibly
+		#Do you know anything about ...?
+		character.tell(self,obj)
+        
+        

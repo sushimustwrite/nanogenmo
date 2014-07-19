@@ -6,6 +6,9 @@ def return_single(string,pronouns):
     string = string.replace('#obj',pronouns['object'])
     string = string.replace('#ref',pronouns['reflex'])
     return string
+	
+def print_single(string,pronouns):
+	print return_single(string,pronouns)
     
 def return_double(string, pronouns1, pronouns2):
     string = string.replace('#sub1',pronouns1['subject'])
@@ -19,6 +22,12 @@ def return_double(string, pronouns1, pronouns2):
     string = string.replace('#ref1',pronouns1['reflex'])
     string = string.replace('#ref2',pronouns2['reflex'])
     return string
+	
+def print_double(string, pronouns1, pronouns2):
+	print return_double(string, pronouns1, pronouns2)
+	
+def formatdialog(pronouns,dialog,verb):
+	print "\n\t\"{0},\" {1} {2}.\n".format(dialog,pronouns['subject'],verb)
 
 masculine = {'subject':'he','object':'him','subj_possess':'his','obj_possess':'his','reflex':'himself'}
 feminine = {'subject':'she','object':'her','subj_possess':'her','obj_possess':'hers','reflex':'herself'}

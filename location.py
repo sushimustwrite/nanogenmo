@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
-#what is happening
-#TODO: Stuff everywhere
 
+import random, printutils, character, plot
 class Location:
    
 
     def __init__(self, name, attributes, catchphrase=None)
         import random
         how_many = random.randint(1,5)
-        for i in how_many:
+        for i in range(how_many):
             generate_minor() #generates some number of minor chars
         self.attributes = attributes
         self.catchphrase = catchphrase
@@ -52,21 +51,20 @@ class Location:
         pass
 
     def generate_minor():
-	import random, printutils, character
-	gender = random.choose(["male", "female"])
+		gender = random.choose(["male", "female"])
         name = random_name(gender)
-	hair_color = random.choose(["blonde", "brown", "black", "red", "brownish", "mousy brown", "strawberry blonde", "white", "gray", "salt and pepper", "dyed purple", "dyed pink", "dyed blue", "dyed green"])
-	eye_color = random.choose(["blue", "green", "black", "brown", "hazel", "gray", "pink", "greenish gray", "steely blue", "greener than green", "purple mountain's majesty", "mismatched"])
-	hair_type = random.choose(["curly", "wavy", "tangled", "braided", "straight", "long", "short", "dreadlocked", "fine", "thick", "bushy", "patchy", "mohawked", "spiky", "heavily styled"])
-	eye_type = random.choose(["bright", "blind", "cloudy", "big", "squinty", "narrow", "wide", "closed", "crossed", "lazy", "pickled", "cat's", "beautiful", "speckled", "slitted", "hungry", "sad", "bug", "cute", "mawkish", "mocking", "laughing", "sparkling", "beleaguered", "shifty", "heavy-lidded", "distant", "watery"])
-	if gender == "male":
-	    person_type = "man"
+		hair_color = random.choose(["blonde", "brown", "black", "red", "brownish", "mousy brown", "strawberry blonde", "white", "gray", "salt and pepper", "dyed purple", "dyed pink", "dyed blue", "dyed green"])
+		eye_color = random.choose(["blue", "green", "black", "brown", "hazel", "gray", "pink", "greenish gray", "steely blue", "greener than green", "purple mountain's majesty", "mismatched"])
+		hair_type = random.choose(["curly", "wavy", "tangled", "braided", "straight", "long", "short", "dreadlocked", "fine", "thick", "bushy", "patchy", "mohawked", "spiky", "heavily styled"])
+		eye_type = random.choose(["bright", "blind", "cloudy", "big", "squinty", "narrow", "wide", "closed", "crossed", "lazy", "pickled", "cat's", "beautiful", "speckled", "slitted", "hungry", "sad", "bug", "cute", "mawkish", "mocking", "laughing", "sparkling", "beleaguered", "shifty", "heavy-lidded", "distant", "watery"])
+		if gender == "male":
+			person_type = "man"
             body_type = random.choose(["tall", "bulky", "wiry", "short", "lean", "skinny", "musclebound", "muscular", "toned", "fit", "emaciated", "sagging", "lopsided", "hunched", "attractive", "heavyset", "puckered", "battle-scarred", "twisted", "deformed", "malnourished", "arrowed", "uncoordinated", "disproportionate", "fat", "sexy", "bony", "angular"])
             face_type = random.choose(["smiling", "frowning", "handsome", "wretched", "square-jawed", "pinched", "narrow", "flattened", "hook-nosed", "relaxed", "contorted", "red", "blushing", "angular", "lean", "fat", "baby", "bright", "scowling", "snarling", "imperturbable", "attractive", "ugly", "laser-cut", "equine", "porcine", "vulpine", "unibrowed", "bearded", "clean-shaven", "clean-washed", "jagged", "kind", "round", "broad", "oval"])
             
-	else:
+		else:
             person_type = "woman"
-	    body_type = random.choose(["tall", "bulky", "wiry", "short", "lean", "skinny", "muscular", "toned", "fit", "emaciated", "sagging", "lopsided", "hunched", "attractive", "heavyset", "puckered", "battle-scarred", "twisted", "deformed", "malnourished", "arrowed", "uncoordinated", "disproportionate", "curvy", "fat", "voluptuous", "beautiful", "sexy", "full-bodiced", "big-breasted", "pleasantly plump", "bony"])
+			body_type = random.choose(["tall", "bulky", "wiry", "short", "lean", "skinny", "muscular", "toned", "fit", "emaciated", "sagging", "lopsided", "hunched", "attractive", "heavyset", "puckered", "battle-scarred", "twisted", "deformed", "malnourished", "arrowed", "uncoordinated", "disproportionate", "curvy", "fat", "voluptuous", "beautiful", "sexy", "full-bodiced", "big-breasted", "pleasantly plump", "bony"])
             face_type = random.choose(["smiling", "frowning", "wretched", "square-jawed", "pinched", "narrow", "heart-shaped", "flattened", "hook-nosed", "contorted", "red", "blushing", "angular", "lean", "fat", "baby", "bright", "scowling", "snarling", "imperturbable", "attractive", "ugly", "laser-cut", "equine", "unibrowed", "clean-washed", "beauty-marked", "beautiful", "jagged", "austere", "radio", "kind", "round", "pretty", "broad", "oval"])
         skin_type = random.choose(["light", "dark", "pale", "tattooed", "wrinkled", "freckled", "black", "brown", "sallow", "jaundiced", "bruised", "pock-marked", "cystic", "hairy", "splotchy", "acne-riddled", "scratched-up", "loose", "glowing", "peachy", "sweaty", "creamy", "thin", "thick", "veiny", "sore-covered", "bloody", "dirty", "smudged", "filthy", "lotioned", "vulpine", "porcine"])
         careers = random.choose(["butcher", "baker", "candlestick maker", "shoemaker", "blacksmith", "nacremen", "alchemist", "barber surgeon", "wizard", "warrior", "bard", "mage", "streetwalker", "performer", "exotic dancer", "escort", "stripper", "solicitor", "king's tech support crewmember", "race chariot driver", "architect", "hunter", "gatherer", "potter", "grave digger", "rogue", "poet", "scribe", "astronomer", "astrologer", "gypsy", "rabbi", "banker", "loan shark", "gardener", "pirate", "ninja", "lion tamer", "toymaker", "mechanic", "educator", "tinker", "upholsterer", "carpenter", "mason", "air lutist", "illusionist", "puppeteer", "grammarian", "farmer", "plowman", "plumber", "matchmaker", "landlord", "baron", "lord", "tattoo artist", "courier", "cryer", "mayor", "captain", "oarsman", "longshoreman", "fisher", "canner", "jeweler", "seamstress", "salesperson", "breeder", "childcare provider", "shop owner", "squire", "knight", "groom", "chimney sweep", "hobo", "bum", "mudraker", "jobseeker", "journeyman", "adventurer", "shepherd", "silk merchant", "clock merchant", "tack merchant", "boatswain", "boatbuilder", "professional wrestler", "beautician", "mortician", "dragon tamer", "snake charmer", "pickpocket", "orphan", "slaver", "sales representative", "guard", "chef", "executive", "barista", "sorcerer", "cleric", "clerk", "judge", "jailer", "sheriff", "horticulturalist", "biofuel specialist", "whale hunter", "apothecary", "dark object specialist", "time traveler", "demolitionist", "technologist", "papermaker", "salt collector", "tax collector", "spicer", "grand inquisitor", "pope", "demigod", "strongman", "geek", "fanner", "fanatic", "lunatic", "murderer", "census taker", "population specialist", "window washer", "pest controller", "taxidermist", "dyemaker", "weaver", "spinner", "miner", "antique thief", "pawn shop operator", "mongoloid", "Jew", "evangelist", "Illuminatus", "academic", "physicist", "doctor", "nurse", "ropemaker", "painter", "artist", "artisan", "woodworker", "glassblower", "rebel", "protester", "cowperson", "king's lickspittle", "king's brownnoser", "king's sycophant", "king's whipping boy", "king's lover", "king's spokesperson", "translator", "armorist"])
@@ -83,10 +81,22 @@ class Location:
         madlib = madlib.replace("#person_type", person_type)
         madlib = madlib.replace("#careers", careers)
         newchar = character.Character(name, gender, catchphrase=None, madlib, self, items=None, goals=None, history=None)
+		#make this character know some random things. (no need to know names, attributes, and catchphrases: those things everyone who knows anything at all knows automagically
+		knowledge = random.sample(plot.states,len(plot.states)//2)
+		for state in knowledge:
+			newchar.learn(state,['namepast','character','triggered','positiveactions','negativeactions','inputs','negatedinputs'])
+		knowledge = random.sample(plot.items,len(plot.items)//2)
+		for item in knowledge:
+			newchar.learn(item,['location','ability'])
+		knowledge = random.sample(plot.locations,len(plot.locations)//2)
+		for location in knowledge:
+			newchar.learn(location,['adjacent_routes','items','sublocations','characters_present'])
+		knowledge = random.sample(plot.major_characters,len(plot.major_characters)//2)
+		for character in knowledge:
+			newchar.learn(character,['location','items','goals','history'])
         characters_present.append(newchar)
-
-
-    
+		
+		
     def random_word()
         import random
         word = random.choice(['a','o','i','u','y','a','o','y','','','','','','','','','','','','','','','','','','','','','','','',''])
