@@ -179,6 +179,7 @@ class Character:
         introduction = random.choose(["Hello, I am #name. #catchphrase", "Greetings, traveler. You may call me #name. #catchphrase", "You're probably wondering who I am. I am #name. #catchphrase"])
         introduction = introduction.replace("#name", self.name)
         introduction = introduction.replace("#catchphrase", self.catchphrase)
+		printutils.formatdialog(self.pronouns,introduction,"said")
     
     #TODO say a random exclamation
     def exclaim(self):
@@ -186,6 +187,7 @@ class Character:
             exclamation = random.choose(["Willickers!", "Wahoo!", "W00t!", "Bless your heart.", "Oh my god.", "Oh my goodness.", "Oooh.", "Cheers!"])
         else:
             exclamation = random.choose(["Fuck this!", "Shit!", "Nooooooooooooooo.", "Fuck this shit.", "Motherfucker.", "Crap.", "Oh dear.", "Aaaaaah!", "Zounds!", "God's blood!", "Fie!", "Tut.", "Pooh!", "Merde."])
+		printutils.formatdialog(self.pronouns,introduction,"exclaimed")
 		
     def go(self):
         self.location.move_along(self,route)
