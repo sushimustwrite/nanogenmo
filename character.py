@@ -192,10 +192,16 @@ class Character:
     def go(self):
         self.location.move_along(self,route)
         
-    #TODO do something related to mood
+    #TODO do something related to mood. come up with more emotes.
     #TODO if mood_goodbad is high, medium, low--set emote equal to something appropriate to mood
     def emote(self):
-        pass
+    if self.mood_goodbad > 1:
+        emote = random.choose(["A large grin filled #name's face.", "#name's laugh filled the area.", "#name smiled.", "#name grinned."])
+    elif self.mood_goodbad < -1:
+        emote = random.choose(["#name kicked a rock several feet ahead.", "#name sighed deeply and stared at the ground.", "#name frowned.", "A grimace appeared on #name's face.", "#name ])
+    else:
+        emote = random.choose(["#name looked ahead.",  "#name stared."])
+    emote = emote.replace("#name", self.name)
     
     #TODO output some text about this action
     #TODO put things in bag of holding?
