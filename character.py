@@ -176,16 +176,22 @@ class Character:
     
     #TODO name him/herself and give a random event from his/her history
     def introduce(self):
-        pass
+        introduction = random.choose(["Hello, I am #name. #catchphrase", "Greetings, traveler. You may call me #name. #catchphrase", "You're probably wondering who I am. I am #name. #catchphrase"])
+        introduction = introduction.replace("#name", self.name)
+        introduction = introduction.replace("#catchphrase", self.catchphrase)
     
     #TODO say a random exclamation
     def exclaim(self):
-        pass
+        if self.mood_goodbad > -1:
+            exclamation = random.choose(["Willickers!", "Wahoo!", "W00t!", "Bless your heart.", "Oh my god.", "Oh my goodness.", "Oooh.", "Cheers!"])
+        else:
+            exclamation = random.choose(["Fuck this!", "Shit!", "Nooooooooooooooo.", "Fuck this shit.", "Motherfucker.", "Crap.", "Oh dear.", "Aaaaaah!", "Zounds!", "God's blood!", "Fie!", "Tut.", "Pooh!", "Merde."])
 		
     def go(self):
         self.location.move_along(self,route)
         
     #TODO do something related to mood
+    #TODO if mood_goodbad is high, medium, low--set emote equal to something appropriate to mood
     def emote(self):
         pass
     
