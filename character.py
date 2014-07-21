@@ -23,7 +23,7 @@ class Character:
         else if gender == 'neuter':
             pronouns = printutils.neuter
         else if gender == 'neutral':
-            pronouns = neutral
+            pronouns = printutils.neutral
         self.location = location #how would this change location
         self.attributes = attributes
         if goals is None:
@@ -170,15 +170,15 @@ class Character:
         
 	#TODO: different ways of refusing to talk to someone. these should work even if they've been talking a bit
     def refuse():
-        refusals = ["Sorry mate, I have to get going", "No way, I can't tell you that", "That's a secret", "I'd love to tell you, but oh look, my house is on fire", "I'd tell you but I'd have to kill you"] #and so on
-        excuse = random.choose(refusals)
+        refusals = ["Sorry mate, I have to get going", "No way, I can't tell you that", "That's a secret", "I'd love to tell you, but oh look, my house is on fire", "I'd tell you but I'd have to kill you", "Oh look, time for my daily ritual sacrifice", "I'm afraid you're not paying me nearly enough to know that. Nor are you attractive enough", "I know people like you can't keep a secret", "You want the truth? You can't handle the truth", "Nope, sorry", "Not on your life", "If the king can't know then you can't either", "Crossed my heart and hoped to die if I ever told. I also shook my bottom because I got 'em", "I don't think I could live with myself if you knew"] #and so on
+        excuse = random.choice(refusals)
         printutils.formatdialog(self.pronouns,excuse,"replied")
 
     
     #TODO name him/herself and give a random event from his/her history
     def introduce(self):
-        greeting = random.choose(["Greetings, traveler", "Yo", "Hello, friend", "Oy, fancy meeting you here", "Sup", "Bonjour", "Hola", "Duuuuuude", "HODOR", "Lfhaifsodif", "My oh my, lovely to meet you", "How YOU doin'", "Fancy a cuppa", "Who are you", "Top of the morning to you,", "Privet", "Zdorovat'sya", "Hallo", "Zvat'", "Oklikat'", "Hey", "Ahoy", "Aey", "V chem delo?", "How's it going?", "Hey sexy", "Well, look who's here", "Do I know you?", "Hey Jamie. It is Jamie, right?", "Genya! I haven't seen you in forever", "Oh, sorry. I thought you were someone else", "Can I bum a cig off you?", "Hey pal, do you have a few bucks?", "Have I see you somewhere before?", "Howdy", "What's a nice person like you doing in a place like this?", "What are you doing here?", "Good day to you"])
-        introduction = random.choose(["I am #name. #catchphrase", "You may call me #name. #catchphrase", "You're probably wondering who I am. I am #name. #catchphrase", "#catchphrase. I am #name", ])
+        greeting = random.choice(["Greetings, traveler", "Yo", "Hello, friend", "Oy, fancy meeting you here", "Sup", "Bonjour", "Hola", "Duuuuuude", "HODOR", "Lfhaifsodif", "My oh my, lovely to meet you", "How YOU doin'", "Fancy a cuppa", "Who are you", "Top of the morning to you,", "Privet", "Zdorovat'sya", "Hallo", "Zvat'", "Oklikat'", "Hey", "Ahoy", "Aey", "V chem delo?", "How's it going?", "Hey sexy", "Well, look who's here", "Do I know you?", "Hey Jamie. It is Jamie, right?", "Genya! I haven't seen you in forever", "Oh, sorry. I thought you were someone else", "Can I bum a cig off you?", "Hey pal, do you have a few bucks?", "Have I see you somewhere before?", "Howdy", "What's a nice person like you doing in a place like this?", "What are you doing here?", "Good day to you", "Nice to meet you", "Salutations"])
+        introduction = random.choice(["I am #name. #catchphrase", "You may call me #name. #catchphrase", "You're probably wondering who I am. I am #name. #catchphrase", "#catchphrase. I am #name", "#name's the name. #catchphrase", "Good to meetcha. I'm #name", "You don't know me? Oh right, you don't. I'm #name"])
         introduction = introduction.replace("#name", self.name)
         introduction = introduction.replace("#catchphrase", self.catchphrase)
 		printutils.formatdialog(self.pronouns,introduction,"said")
@@ -186,9 +186,9 @@ class Character:
     #TODO say a random exclamation
     def exclaim(self):
         if self.mood_goodbad > -1:
-            exclamation = random.choose(["Willickers!", "Wahoo!", "W00t!", "Bless your heart.", "Oh my god.", "Oh my goodness.", "Oooh.", "Cheers!"])
+            exclamation = random.choice(["Willickers!", "Wahoo!", "W00t!", "Bless your heart.", "Oh my god.", "Oh my goodness.", "Oooh.", "Cheers!", "Praise Helix", "Yay!", "Woohoo!", "Golly gee!", "Whee", "Shiny", "All glory to the Hypnotoad", "Neato", "Yesssss", "Excellent", "Great!"])
         else:
-            exclamation = random.choose(["Fuck this!", "Shit!", "Nooooooooooooooo.", "Fuck this shit.", "Motherfucker.", "Crap.", "Oh dear.", "Aaaaaah!", "Zounds!", "God's blood!", "Fie!", "Tut.", "Pooh!", "Merde."])
+            exclamation = random.choice(["Fuck this!", "Shit!", "Nooooooooooooooo.", "Fuck this shit.", "Motherfucker.", "Crap.", "Oh dear.", "Aaaaaah!", "Zounds!", "God's blood!", "Fie!", "Tut.", "Pooh!", "Merde.", "That sucks", "Uhoh", "Derp", "Balls", "Oh no"])
 		printutils.formatdialog(self.pronouns,introduction,"exclaimed")
 		
     def go(self):
@@ -198,15 +198,16 @@ class Character:
     #TODO if mood_goodbad is high, medium, low--set emote equal to something appropriate to mood
     def emote(self):
     if self.mood_goodbad > 1:
-        emote = random.choose(["A large grin filled #name's face.", "#name's laugh filled the area.", "#name smiled.", "#name grinned."])
+        emote = random.choice(["A large grin filled #name's face.", "#name's laugh filled the area.", "#name smiled.", "#name grinned."])
     elif self.mood_goodbad < -1:
-        emote = random.choose(["#name kicked a rock several feet ahead.", "#name sighed deeply and stared at the ground.", "#name frowned.", "A grimace appeared on #name's face.", "#name was busy finger drumming", ])
+        emote = random.choice(["#name kicked a rock several feet ahead.", "#name sighed deeply and stared at the ground.", "#name frowned.", "A grimace appeared on #name's face.", "#name was busy finger drumming", ])
     else:
-        emote = random.choose(["#name looked ahead", "#name stared", "#name blinked", "#name swayed from side to side", "#name pushed back a lock of hair", ])
+        emote = random.choice(["#name looked ahead", "#name stared", "#name blinked", "#name swayed from side to side", "#name pushed back a lock of hair", ])
     emote = emote.replace("#name", self.name)
 
     def goodbye(self):
-        farewell = random.choose["Here's to you, kid", "Au revoir", "May Helix be with you", "Stay thirsty, my friend", "Live long and prosper", "May your genitals never be cursed off by an evil item", "Don't let the boogeyman get you", "Say hi to your mom for me", "Fare thee well", "Adieu", "So long and thanks for all the fish", "So long and may you die before you pass a kidney stone", "Zod be with you", "May Avandre bring you luck", "Baty blesses you", "I hope you get the bastard", "Y'all come back, ya hear", "Go face your next challenge", "See you around", "Stay alive", "Good night and good luck", "Peace", "Peace out", "Peach out", "God bless"])
+        farewell = random.choice(["Here's to you, kid", "Au revoir", "May Helix be with you", "Stay thirsty, my friend", "Live long and prosper", "May your genitals never be cursed off by an evil item", "Don't let the boogeyman get you", "Say hi to your mom for me", "Fare thee well", "Adieu", "So long and thanks for all the fish", "So long and may you die before you pass a kidney stone", "Zod be with you", "May Avandre bring you luck", "Baty blesses you", "I hope you get the bastard", "Y'all come back, ya hear", "Go face your next challenge", "See you around", "Stay alive", "Good night and good luck", "Peace", "Peace out", "Peach out", "God bless"])
+        printutils.formatdialog(self.name,farewell,"said")
     
     #TODO output some text about this action
     #TODO put things in bag of holding?
@@ -229,7 +230,7 @@ class Character:
         
     #TODO: what do you do? this probably depends on the character so just put a default "stern warning" here and we'll modify it to something else for specific characters
     def catch_thief(self):
-        warning = random.choose(["You'll pay if you do that again.", "Hope you like the pokey.", "You get a warning this time. Don't make me warn you again.", "I'll let you go this time, but you better not be here when my big brother gets here."])
+        warning = random.choice(["You'll pay if you do that again.", "Hope you like the pokey.", "You get a warning this time. Don't make me warn you again.", "I'll let you go this time, but you better not be here when my big brother gets here."])
         pass
     
     def offer(self,character,item):
