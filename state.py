@@ -64,4 +64,28 @@ class State:
             if cancel:
                 break
         return cancel
+
+class Location_State(State):
+    def __init__(self, character, location, event_arrival=None):
+        super(Location_State,self).__init__("get to "+location.name,"in "+location.name,character,event_arrival=None)
+        self.location = location
         
+    def is_on(self):
+        return character in location.characters_present and super(Location_State,self).is_on()
+        
+class Sticky_State(State):
+    def __init__(self, name, namepast, character, event_arrival=None):
+        super(Location_State,self).__init__(name,namepast,character,event_arrival)
+    
+    def is_on(self):
+        return self.triggered or super(Sticky_State,self).is_on()
+        
+class Item_State(State):
+    def __init__(self, character, item, event_arrival=None):
+        super(Item_State,self).__init__("get the "+item.name,"carrying the "+item.name,character,event_arrival)
+        self.item = item
+        
+    def is_on(self):
+        return item in character.items and super(Location_State,self).is_on()
+        
+    
