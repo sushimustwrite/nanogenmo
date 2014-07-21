@@ -1,26 +1,24 @@
 # -*- coding: utf-8 -*-
+import re
+
+def multiple_replacer(*key_values):
+    replace_dict = dict(key_values)
+    replacement_function = lambda match: replace_dict[match.group(0)]
+    pattern = re.compile("|".join([re.escape(k) for k, v in key_values]), re.M)
+    return lambda string: pattern.sub(replacement_function, string)
+    
+def multiple_replace(string, *key_values):
+    return multiple_replacer(*key_values)(string)
+    
 def return_single(string,pronouns):
-    string = string.replace('#sub',pronouns['subject'])
-    string = string.replace('#spos',pronouns['subj_possess'])
-    string = string.replace('#opos',pronouns['obj_possess'])
-    string = string.replace('#obj',pronouns['object'])
-    string = string.replace('#ref',pronouns['reflex'])
-    return string
+    replacements = ("#sub",pronouns['subject']), ("#spos", pronouns['subj_possess']), ("#opos", pronouns['obj_possess']), ("#obj",pronouns['object']), ("#ref", pronouns['reflex'])
+    return multiple_replace(string, *replacements)
 	
 def print_single(string,pronouns):
 	print return_single(string,pronouns)
     
 def return_double(string, pronouns1, pronouns2):
-    string = string.replace('#sub1',pronouns1['subject'])
-    string = string.replace('#sub2',pronouns2['subject'])
-    string = string.replace('#spos1',pronouns1['subj_possess'])
-    string = string.replace('#spos2',pronouns2['subj_possess'])
-    string = string.replace('#opos1',pronouns1['obj_possess'])
-    string = string.replace('#opos2',pronouns2['obj_possess'])
-    string = string.replace('#obj1',pronouns1['object'])
-    string = string.replace('#obj2',pronouns2['object'])
-    string = string.replace('#ref1',pronouns1['reflex'])
-    string = string.replace('#ref2',pronouns2['reflex'])
+    replacements = ("#sub1",pronouns1['subject']), ("#spos1", pronouns1['subj_possess']), ("#opos1", pronouns1['obj_possess']), ("#obj1",pronouns1['object']), ("#ref1", pronouns1['reflex']), ("#sub2",pronouns2['subject']), ("#spos2", pronouns2['subj_possess']), ("#opos2", pronouns2['obj_possess']), ("#obj2",pronouns2['object']), ("#ref2", pronouns2['reflex'])
     return string
 	
 def print_double(string, pronouns1, pronouns2):

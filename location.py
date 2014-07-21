@@ -5,7 +5,6 @@ class Location:
    
 
     def __init__(self, name, attributes, catchphrase=None)
-        import random
         how_many = random.randint(1,5)
         for i in range(how_many):
             generate_minor() #generates some number of minor chars
@@ -25,21 +24,21 @@ class Location:
         if not item in items:
             items.append(item)
 
-    #TODO: set the corresponding State for this character in this location
     def arrive_character(character):
+        adverb = random.choice(['Not long after that, ', 'Soon, ', 'Some time later, ', 'Eventually, ', 'Later, ', 'Soon afterwards, ', 'A short time passed before ', "It wasn't long before", "It took a while, but eventually ", "Things went swimmingly until ", "Nothing of import happened until ", "At long last, ", "It was easy going until ", "It rained a few times but nonetheless, soon ", "After a three day pause to recover from a violent bout of stomach flu, ", "One tall bottle of vodka later, ", "Just a hop, skip, and jump away, ", "After longer than #sub wanted, but sooner than #sub expected, ", "In the blink of an eye, ", "A few days later, ", "Before #sub'd even realized #sub'd left, ", "After getting lost and losing a day finding the way again, ", "Soon after #sub realized #sub could really use a bath, ", "Just when #sub was about to run out of food, ","A long week later, just before sunset, ", "Ready to give anything for a hot bath and a cozy bed, ", "None the worse for wear, ", "Before an agonizing case of leg chafing could render #obj immobile, ", "With #spos bowels screaming for mercy, #sub was glad #sub wouldn't have to dig a hole as ", "Just after 6AM on the third day, ",  "Weary from the long days of traveling, ", "Hoping the bath house was still open, ", "Wondering why #sub'd thought this was a good idea at all,", "With #spos sunburned neck blistering, ", "Just wishing to be home again for a few moments, ", "Itching for a long pull of vodka, ", "Rubbed raw from the road, ", "Glad to finally be somewhere, ", "Feeling a bit hangry, ", "Thinking about succulent pork roast, ", "Wishing #spos mom were here, ", "Just before losing all faith in humanity, "])
+        printutils.print_single(adverb+ "#sub arrived in "+location.name,self.pronouns)
+        character.emote()
         characters_present.append(character)
         
     def delete_character(character):
         #see if character is in location
         #if yes, delete character
-        characters_present.remove(character)
+        if character in characters_present:
+            characters_present.remove(character)
 
 
-    def nearby_routes(route):
+    def add_route(route):
         adjacent_routes.append(route)
-        
-        
-        #return nearby_routes
         
 
     def add_sublocation(self, location):
@@ -47,53 +46,61 @@ class Location:
             self.sublocations.append(location)
             
     #TODO: move a character from one place to another, possibly with random encounters along the way
-    def move_along(character,location)
-        pass
+    def move_along(character,location):
+        route_found = False
+        for route in adjacent_routes:
+            if route.getDestination(self) is location:
+                route_found = True
+                break
+        if route_found:
+            printutils.print_single(character.name+" set off down the "+route.name+" toward "+location.name+".",self.pronouns)
+            self.delete_character(character)
+            if character is plot.protagonist and len(plot.p_rand_encounters)>0 and random.rand()<0.1:
+                encounter = random.choice(plot.p_rand_encounters)
+                plot.p_rand_encounters.remove(encounter)
+                encounter.trigger()
+            if character is plot.antagonist and len(plot.a_rand_encounters)>0 and random.rand()<0.1:
+                encounter = random.choice(plot.a_rand_encounters)
+                plot.a_rand_encounters.remove(encounter)
+                encounter.trigger()
+            location.arrive_character(character)
 
     def generate_minor():
-		gender = random.choose(["male", "female"])
+		gender = random.choice(["male", "female"])
         name = random_name(gender)
-		hair_color = random.choose(["blonde", "brown", "black", "red", "brownish", "mousy brown", "strawberry blonde", "white", "gray", "salt and pepper", "dyed purple", "dyed pink", "dyed blue", "dyed green"])
-		eye_color = random.choose(["blue", "green", "black", "brown", "hazel", "gray", "pink", "greenish gray", "steely blue", "greener than green", "purple mountain's majesty", "mismatched"])
-		hair_type = random.choose(["curly", "wavy", "tangled", "braided", "straight", "long", "short", "dreadlocked", "fine", "thick", "bushy", "patchy", "mohawked", "spiky", "heavily styled"])
-		eye_type = random.choose(["bright", "blind", "cloudy", "big", "squinty", "narrow", "wide", "closed", "crossed", "lazy", "pickled", "cat's", "beautiful", "speckled", "slitted", "hungry", "sad", "bug", "cute", "mawkish", "mocking", "laughing", "sparkling", "beleaguered", "shifty", "heavy-lidded", "distant", "watery"])
+		hair_color = random.choice(["blonde", "brown", "black", "red", "brownish", "mousy brown", "strawberry blonde", "white", "gray", "salt and pepper", "dyed purple", "dyed pink", "dyed blue", "dyed green"])
+		eye_color = random.choice(["blue", "green", "black", "brown", "hazel", "gray", "pink", "greenish gray", "steely blue", "greener than green", "purple mountain's majesty", "mismatched"])
+		hair_type = random.choice(["curly", "wavy", "tangled", "braided", "straight", "long", "short", "dreadlocked", "fine", "thick", "bushy", "patchy", "mohawked", "spiky", "heavily styled"])
+		eye_type = random.choice(["bright", "blind", "cloudy", "big", "squinty", "narrow", "wide", "closed", "crossed", "lazy", "pickled", "cat's", "beautiful", "speckled", "slitted", "hungry", "sad", "bug", "cute", "mawkish", "mocking", "laughing", "sparkling", "beleaguered", "shifty", "heavy-lidded", "distant", "watery"])
 		if gender == "male":
 			person_type = "man"
-            body_type = random.choose(["tall", "bulky", "wiry", "short", "lean", "skinny", "musclebound", "muscular", "toned", "fit", "emaciated", "sagging", "lopsided", "hunched", "attractive", "heavyset", "puckered", "battle-scarred", "twisted", "deformed", "malnourished", "arrowed", "uncoordinated", "disproportionate", "fat", "sexy", "bony", "angular"])
-            face_type = random.choose(["smiling", "frowning", "handsome", "wretched", "square-jawed", "pinched", "narrow", "flattened", "hook-nosed", "relaxed", "contorted", "red", "blushing", "angular", "lean", "fat", "baby", "bright", "scowling", "snarling", "imperturbable", "attractive", "ugly", "laser-cut", "equine", "porcine", "vulpine", "unibrowed", "bearded", "clean-shaven", "clean-washed", "jagged", "kind", "round", "broad", "oval"])
+            body_type = random.choice(["tall", "bulky", "wiry", "short", "lean", "skinny", "musclebound", "muscular", "toned", "fit", "emaciated", "sagging", "lopsided", "hunched", "attractive", "heavyset", "puckered", "battle-scarred", "twisted", "deformed", "malnourished", "arrowed", "uncoordinated", "disproportionate", "fat", "sexy", "bony", "angular"])
+            face_type = random.choice(["smiling", "frowning", "handsome", "wretched", "square-jawed", "pinched", "narrow", "flattened", "hook-nosed", "relaxed", "contorted", "red", "blushing", "angular", "lean", "fat", "baby", "bright", "scowling", "snarling", "imperturbable", "attractive", "ugly", "laser-cut", "equine", "porcine", "vulpine", "unibrowed", "bearded", "clean-shaven", "clean-washed", "jagged", "kind", "round", "broad", "oval"])
             
 		else:
             person_type = "woman"
-			body_type = random.choose(["tall", "bulky", "wiry", "short", "lean", "skinny", "muscular", "toned", "fit", "emaciated", "sagging", "lopsided", "hunched", "attractive", "heavyset", "puckered", "battle-scarred", "twisted", "deformed", "malnourished", "arrowed", "uncoordinated", "disproportionate", "curvy", "fat", "voluptuous", "beautiful", "sexy", "full-bodiced", "big-breasted", "pleasantly plump", "bony"])
-            face_type = random.choose(["smiling", "frowning", "wretched", "square-jawed", "pinched", "narrow", "heart-shaped", "flattened", "hook-nosed", "contorted", "red", "blushing", "angular", "lean", "fat", "baby", "bright", "scowling", "snarling", "imperturbable", "attractive", "ugly", "laser-cut", "equine", "unibrowed", "clean-washed", "beauty-marked", "beautiful", "jagged", "austere", "radio", "kind", "round", "pretty", "broad", "oval"])
-        skin_type = random.choose(["light", "dark", "pale", "tattooed", "wrinkled", "freckled", "black", "brown", "sallow", "jaundiced", "bruised", "pock-marked", "cystic", "hairy", "splotchy", "acne-riddled", "scratched-up", "loose", "glowing", "peachy", "sweaty", "creamy", "thin", "thick", "veiny", "sore-covered", "bloody", "dirty", "smudged", "filthy", "lotioned", "vulpine", "porcine"])
-        careers = random.choose(["butcher", "baker", "candlestick maker", "shoemaker", "blacksmith", "nacremen", "alchemist", "barber surgeon", "wizard", "warrior", "bard", "mage", "streetwalker", "performer", "exotic dancer", "escort", "stripper", "solicitor", "king's tech support crewmember", "race chariot driver", "architect", "hunter", "gatherer", "potter", "grave digger", "rogue", "poet", "scribe", "astronomer", "astrologer", "gypsy", "rabbi", "banker", "loan shark", "gardener", "pirate", "ninja", "lion tamer", "toymaker", "mechanic", "educator", "tinker", "upholsterer", "carpenter", "mason", "air lutist", "illusionist", "puppeteer", "grammarian", "farmer", "plowman", "plumber", "matchmaker", "landlord", "baron", "lord", "tattoo artist", "courier", "cryer", "mayor", "captain", "oarsman", "longshoreman", "fisher", "canner", "jeweler", "seamstress", "salesperson", "breeder", "childcare provider", "shop owner", "squire", "knight", "groom", "chimney sweep", "hobo", "bum", "mudraker", "jobseeker", "journeyman", "adventurer", "shepherd", "silk merchant", "clock merchant", "tack merchant", "boatswain", "boatbuilder", "professional wrestler", "beautician", "mortician", "dragon tamer", "snake charmer", "pickpocket", "orphan", "slaver", "sales representative", "guard", "chef", "executive", "barista", "sorcerer", "cleric", "clerk", "judge", "jailer", "sheriff", "horticulturalist", "biofuel specialist", "whale hunter", "apothecary", "dark object specialist", "time traveler", "demolitionist", "technologist", "papermaker", "salt collector", "tax collector", "spicer", "grand inquisitor", "pope", "demigod", "strongman", "geek", "fanner", "fanatic", "lunatic", "murderer", "census taker", "population specialist", "window washer", "pest controller", "taxidermist", "dyemaker", "weaver", "spinner", "miner", "antique thief", "pawn shop operator", "mongoloid", "Jew", "evangelist", "Illuminatus", "academic", "physicist", "doctor", "nurse", "ropemaker", "painter", "artist", "artisan", "woodworker", "glassblower", "rebel", "protester", "cowperson", "king's lickspittle", "king's brownnoser", "king's sycophant", "king's whipping boy", "king's lover", "king's spokesperson", "translator", "armorist"])
-        personality = random.choose(["perky", "bitchy", "liberal", "traditional", "progressive", "detail-oriented", "perfectionistic", "lusty", "horny", "ambitionless", "lazy", "active", "tricky", "clever", "foolish", "lackadaisical", "meticulous", "obsessive", "compulsive", "addictive", "psychopathic", "particular", "quiet", "shy", "exuberant", "talkative", "loquacious", "eager", "pissed", "drunk", "narcissistic", "humble", "proud", "voyeuristic", "go-getter", "take-charge", "ambitious", "entrepreneurial", "self-starting", "confident", "goal-oriented", "punctilious", "punctual", "unctuous", "sketchy", "slimy", "repulsive", "disgusting", "wise", "astute", "observant", "intuitive", "quick on the uptake", "graceful", "clumsy", "coordinated", "whiny", "entitled", "snobby", "boorish", "chicken", "afraid", "anxious", "nervous", "depressed", "histrionic", "terrible", "hysterical", "hilarious", "humorous", "jocular", "piratical", "fantastic", "sneaky", "randy", "sleepy", "priggish", "sullied", "sinful", "delicious", "moist and delicious", "delicious with chocolate", "tasty with ketchup", "unimportant", "worthless", "crappy", "honorable", "venerable", "respected", "respectable", "older than dirt", "unlike anyone else", "naive", "boring", "sensitive", "insensitive", "negligent", "abusive", "party-oriented", "fanciful", "whimsical", "untethered", "free-spirited", "emotional", "logical", "sociable", "antisocial", "paranoid", "schizophrenic", "inquisitive", "acquisitive", "greedy", "gluttonous", "glutenous",  "colicky", "icky", "tacky", "tactless", "tactful", "pestilential", "tempestuous", "creative", "dull", "bright", "lawful", "uninspired", "chaotic", "evil", "good at everything", "accomplished", "loved by all", "hated by all", "tenacious", "determined", "dogmatic", "pretentious", "laserlike", "polished", "mannerly", "rude", "decorous", "ironclad", "stubborn", "persistent", "incorrigible", "zany", "zenlike", "xenophobic", "xenophilic", "wacky", "insane", "wondrous", "peckish", "charismatic", "athletic", "dextrous", "healthy", "strong-willed", "strong", "acrobatic", "enduring", "stealthy", "insightful", "intimidating", "diplomatic", "nature-loving", "perceptive", "streetwise", "magical", "credible", "credulous", "intelligent", "vigorous"])
-        madlib = random.choose(["#sub was a #personality #career with #hair_type #hair_color hair.", "#sub had no hair, but #sub was very #personality in #spos own way.", "#sub worked as a #careers and was known for #spos #personality personality and #spos #hair_type #hair_color hair.", "#sub had a #body_type body that accented #spos #face_type face.", "It was strange for a #careers like #obj to have such #skin_type skin.", "#spos #hair_type #hair_color hair framed #spos #face_type face.", "#sub worked as a #careers and habitually pushed #spos #hair_type #hair_color hair out of #spos #face_type face.", "The #personality #careers stared straight ahead with #spos #eye_type #eye_color eyes.", "#spos #eye_type #eye_color eyes were set in a #face_type face framed by #hair_type hair.", "The #personality #person_type worked as a #careers and was quite distinctive for #spos #hair_type #hair_color hair and #eye_type #eye_color eyes set in #spos #face_type face.", "The #personality #careers was #body_type with #eye_type #eye_color eyes and #hair_type #hair_color hair surrounding a #skin_type #face_type face.", "No one could miss #spos #skin_type skin and #body_type body.", "#spos #skin_type skin and #body_type body made it easy for everyone to recognize the #eye_type-eyed #careers.", "The #personality #person_type turned out to be a #careers.", "People would like the #hair_type-haired #careers better if #sub weren't so #personality.", "The #person_type was #body_type and #personality with #hair_type #hair_color hair, #eye_type #eye_color eyes, and a #skin_type #face_type face.", "The #personality #careers had distinctive #eye_type eyes."])
-        madlib = madlib.replace("#hair_color", hair_color)
-        madlib = madlib.replace("#hair_type", hair_type)
-        madlib = madlib.replace("#eye_color", eye_color)
-        madlib = madlib.replace("#eye_type", eye_type)
-        madlib = madlib.replace("#body_type", body_type)
-        madlib = madlib.replace("#face_type", face_type)
-        madlib = madlib.replace("#skin_type", skin_type)
-        madlib = madlib.replace("#personality", personality)
-        madlib = madlib.replace("#person_type", person_type)
-        madlib = madlib.replace("#careers", careers)
+			body_type = random.choice(["tall", "bulky", "wiry", "short", "lean", "skinny", "muscular", "toned", "fit", "emaciated", "sagging", "lopsided", "hunched", "attractive", "heavyset", "puckered", "battle-scarred", "twisted", "deformed", "malnourished", "arrowed", "uncoordinated", "disproportionate", "curvy", "fat", "voluptuous", "beautiful", "sexy", "full-bodiced", "big-breasted", "pleasantly plump", "bony"])
+            face_type = random.choice(["smiling", "frowning", "wretched", "square-jawed", "pinched", "narrow", "heart-shaped", "flattened", "hook-nosed", "contorted", "red", "blushing", "angular", "lean", "fat", "baby", "bright", "scowling", "snarling", "imperturbable", "attractive", "ugly", "laser-cut", "equine", "unibrowed", "clean-washed", "beauty-marked", "beautiful", "jagged", "austere", "radio", "kind", "round", "pretty", "broad", "oval"])
+        skin_type = random.choice(["light", "dark", "pale", "tattooed", "wrinkled", "freckled", "black", "brown", "sallow", "jaundiced", "bruised", "pock-marked", "cystic", "hairy", "splotchy", "acne-riddled", "scratched-up", "loose", "glowing", "peachy", "sweaty", "creamy", "thin", "thick", "veiny", "sore-covered", "bloody", "dirty", "smudged", "filthy", "lotioned", "vulpine", "porcine"])
+        careers = random.choice(["butcher", "baker", "candlestick maker", "shoemaker", "blacksmith", "nacremen", "alchemist", "barber surgeon", "wizard", "warrior", "bard", "mage", "streetwalker", "performer", "exotic dancer", "escort", "stripper", "solicitor", "king's tech support crewmember", "race chariot driver", "architect", "hunter", "gatherer", "potter", "grave digger", "rogue", "poet", "scribe", "astronomer", "astrologer", "gypsy", "rabbi", "banker", "loan shark", "gardener", "pirate", "ninja", "lion tamer", "toymaker", "mechanic", "educator", "tinker", "upholsterer", "carpenter", "mason", "air lutist", "illusionist", "puppeteer", "grammarian", "farmer", "plowman", "plumber", "matchmaker", "landlord", "baron", "lord", "tattoo artist", "courier", "cryer", "mayor", "captain", "oarsman", "longshoreman", "fisher", "canner", "jeweler", "seamstress", "salesperson", "breeder", "childcare provider", "shop owner", "squire", "knight", "groom", "chimney sweep", "hobo", "bum", "mudraker", "jobseeker", "journeyman", "adventurer", "shepherd", "silk merchant", "clock merchant", "tack merchant", "boatswain", "boatbuilder", "professional wrestler", "beautician", "mortician", "dragon tamer", "snake charmer", "pickpocket", "orphan", "slaver", "sales representative", "guard", "chef", "executive", "barista", "sorcerer", "cleric", "clerk", "judge", "jailer", "sheriff", "horticulturalist", "biofuel specialist", "whale hunter", "apothecary", "dark object specialist", "time traveler", "demolitionist", "technologist", "papermaker", "salt collector", "tax collector", "spicer", "grand inquisitor", "pope", "demigod", "strongman", "geek", "fanner", "fanatic", "lunatic", "murderer", "census taker", "population specialist", "window washer", "pest controller", "taxidermist", "dyemaker", "weaver", "spinner", "miner", "antique thief", "pawn shop operator", "mongoloid", "Jew", "evangelist", "Illuminatus", "academic", "physicist", "doctor", "nurse", "ropemaker", "painter", "artist", "artisan", "woodworker", "glassblower", "rebel", "protester", "cowperson", "king's lickspittle", "king's brownnoser", "king's sycophant", "king's whipping boy", "king's lover", "king's spokesperson", "translator", "armorist"])
+        personality = random.choice(["perky", "bitchy", "liberal", "traditional", "progressive", "detail-oriented", "perfectionistic", "lusty", "horny", "ambitionless", "lazy", "active", "tricky", "clever", "foolish", "lackadaisical", "meticulous", "obsessive", "compulsive", "addictive", "psychopathic", "particular", "quiet", "shy", "exuberant", "talkative", "loquacious", "eager", "pissed", "drunk", "narcissistic", "humble", "proud", "voyeuristic", "go-getter", "take-charge", "ambitious", "entrepreneurial", "self-starting", "confident", "goal-oriented", "punctilious", "punctual", "unctuous", "sketchy", "slimy", "repulsive", "disgusting", "wise", "astute", "observant", "intuitive", "quick on the uptake", "graceful", "clumsy", "coordinated", "whiny", "entitled", "snobby", "boorish", "chicken", "afraid", "anxious", "nervous", "depressed", "histrionic", "terrible", "hysterical", "hilarious", "humorous", "jocular", "piratical", "fantastic", "sneaky", "randy", "sleepy", "priggish", "sullied", "sinful", "delicious", "moist and delicious", "delicious with chocolate", "tasty with ketchup", "unimportant", "worthless", "crappy", "honorable", "venerable", "respected", "respectable", "older than dirt", "unlike anyone else", "naive", "boring", "sensitive", "insensitive", "negligent", "abusive", "party-oriented", "fanciful", "whimsical", "untethered", "free-spirited", "emotional", "logical", "sociable", "antisocial", "paranoid", "schizophrenic", "inquisitive", "acquisitive", "greedy", "gluttonous", "glutenous",  "colicky", "icky", "tacky", "tactless", "tactful", "pestilential", "tempestuous", "creative", "dull", "bright", "lawful", "uninspired", "chaotic", "evil", "good at everything", "accomplished", "loved by all", "hated by all", "tenacious", "determined", "dogmatic", "pretentious", "laserlike", "polished", "mannerly", "rude", "decorous", "ironclad", "stubborn", "persistent", "incorrigible", "zany", "zenlike", "xenophobic", "xenophilic", "wacky", "insane", "wondrous", "peckish", "charismatic", "athletic", "dextrous", "healthy", "strong-willed", "strong", "acrobatic", "enduring", "stealthy", "insightful", "intimidating", "diplomatic", "nature-loving", "perceptive", "streetwise", "magical", "credible", "credulous", "intelligent", "vigorous"])
+        madlib = random.choice(["#sub was a #personality #career with #hair_type #hair_color hair.", "#sub had no hair, but #sub was very #personality in #spos own way.", "#sub worked as a #careers and was known for #spos #personality personality and #spos #hair_type #hair_color hair.", "#sub had a #body_type body that accented #spos #face_type face.", "It was strange for a #careers like #obj to have such #skin_type skin.", "#spos #hair_type #hair_color hair framed #spos #face_type face.", "#sub worked as a #careers and habitually pushed #spos #hair_type #hair_color hair out of #spos #face_type face.", "The #personality #careers stared straight ahead with #spos #eye_type #eye_color eyes.", "#spos #eye_type #eye_color eyes were set in a #face_type face framed by #hair_type hair.", "The #personality #person_type worked as a #careers and was quite distinctive for #spos #hair_type #hair_color hair and #eye_type #eye_color eyes set in #spos #face_type face.", "The #personality #careers was #body_type with #eye_type #eye_color eyes and #hair_type #hair_color hair surrounding a #skin_type #face_type face.", "No one could miss #spos #skin_type skin and #body_type body.", "#spos #skin_type skin and #body_type body made it easy for everyone to recognize the #eye_type-eyed #careers.", "The #personality #person_type turned out to be a #careers.", "People would like the #hair_type-haired #careers better if #sub weren't so #personality.", "The #person_type was #body_type and #personality with #hair_type #hair_color hair, #eye_type #eye_color eyes, and a #skin_type #face_type face.", "The #personality #careers had distinctive #eye_type eyes."])
+        replacements = ("#hair_color",hair_color), ("#hair_type", hair_type), ("#eye_color", eye_color), ("#eye_type", eye_type), ("#body_type", body_type), ("#face_type", face_type), ("#skin_type", skin_type), ("#personality", personality), ("#person_type", person_type), ("#careers", careers)
+        madlib = printutils.multiple_replace(madlib, *replacements)
         newchar = character.Character(name, gender, catchphrase=None, madlib, self, items=None, goals=None, history=None)
-		#make this character know some random things. (no need to know names, attributes, and catchphrases: those things everyone who knows anything at all knows automagically
-		knowledge = random.sample(plot.states,len(plot.states)//2)
-		for state in knowledge:
-			newchar.learn(state,['namepast','character','triggered','positiveactions','negativeactions','inputs','negatedinputs'])
-		knowledge = random.sample(plot.items,len(plot.items)//2)
-		for item in knowledge:
-			newchar.learn(item,['location','ability'])
-		knowledge = random.sample(plot.locations,len(plot.locations)//2)
-		for location in knowledge:
-			newchar.learn(location,['adjacent_routes','items','sublocations','characters_present'])
-		knowledge = random.sample(plot.major_characters,len(plot.major_characters)//2)
-		for character in knowledge:
-			newchar.learn(character,['location','items','goals','history'])
+        #make this character know some random things. (no need to know names, attributes, and catchphrases: those things everyone who knows anything at all knows automagically
+        knowledge = random.sample(plot.states,len(plot.states)//2)
+        for state in knowledge:
+                newchar.learn(state,['namepast','character','triggered','positiveactions','negativeactions','inputs','negatedinputs'])
+        knowledge = random.sample(plot.items,len(plot.items)//2)
+        for item in knowledge:
+                newchar.learn(item,['location','ability'])
+        knowledge = random.sample(plot.locations,len(plot.locations)//2)
+        for location in knowledge:
+                newchar.learn(location,['adjacent_routes','items','sublocations','characters_present'])
+        knowledge = random.sample(plot.major_characters,len(plot.major_characters)//2)
+        for character in knowledge:
+                newchar.learn(character,['location','items','goals','history'])
         characters_present.append(newchar)
 		
 		
@@ -112,9 +119,6 @@ class Location:
     def random_village():
         import random
         return (random_word()+random.choice(['sk','sk','sk','sk','sky','n','vo','sh','vka','vsk','dsk','voy','koy','ngrad','','','','','',''])).title()
-        
-#test
-#print random_village()
                 
     def random_name(gender):
         import random
@@ -140,3 +144,17 @@ class Sublocation(Location):
 
 class Entrance(Sublocation):
     pass
+
+class Route:
+    def __init__(self, name, attributes, endpoint1, endpoint2):
+        self.name = name
+        self.attributes = attributes
+        self.endpoint1 = endpoint1
+        self.endpoint2 = endpoint2
+        
+    def get_destination(self, location):
+        if endpoint1 is location:
+            return endpoint2
+        if endpoint2 is location:
+            return endpoint1
+        return None
