@@ -10,6 +10,7 @@ class Character:
     capacity = 5
     hasBag = False
     offered_item = {}
+    root_goal = None
     
     
     def __init__(self, name, gender, catchphrase, attributes, location=None, items=None, goals=None, history=None):
@@ -24,12 +25,13 @@ class Character:
             pronouns = printutils.neuter
         else if gender == 'neutral':
             pronouns = printutils.neutral
-        self.location = location #how would this change location
+        self.location = location
         self.attributes = attributes
         if goals is None:
             self.goals = []
         else:
             self.goals = goals
+            root_goal = goal[0]
         if items is None:
             self.items = []
         else:
@@ -67,8 +69,15 @@ class Character:
             
     def add_goal(self,goal):
         goal = remember(goal)
+        if goal is None:
+            self.learn(goal)
+        goal = remember(goal)
         if goal not in goals:
             goals.add(goal)
+            
+    def add_terminal_goal(self,goal):
+        self.add_goal(goal)
+        self.root_goal = goal
             
     def remove_goal(self,goal):
         goal = remember(goal)
@@ -77,7 +86,7 @@ class Character:
             
     #find my own version of this object, 
     def remember(self,obj):
-		myobj=obj
+	myobj=obj
         if type(obj) is Location:
             myobj=self.knowledge['locations'].get(obj.name)
         else if type(obj) is Item:
@@ -89,7 +98,7 @@ class Character:
         return myobj
         
     #add specified attributes to local version
-    def learn(self,obj,attributes):
+    def learn(self,obj,attributes=None):
         myobj = self.remember(obj)
         if myobj is None:
             if type(obj) is Location:
@@ -104,24 +113,24 @@ class Character:
             else if type(obj) is State:
                 knowledge['states'][obj.name] = State(obj.name,obj.namepast,obj.character)
                 myobj = knowledge['states'][obj.name]
-        
-        for attr in attributes:
-            value = getattr(obj,attr)
-            #replace the referenced attribute by the one i remember: no catastrophic delivery of free information!
-            if type(value) is Item or type(value) is Location or type(value) is State or type(value) is Character:
-                value = self.remember(value)
-			else if type(value) is list:
-				newlist = []
-				for item in list:
-					newitem = self.remember(item)
-					newlist.append(newitem)
-				value = newlist
-			else if type(value) is dict:
-				newdict = {}
-				for (key,item) in items(value):
-					newdict[key] = self.remember(item)
-				value = newdict
-			setattr(myobj,attr,value)
+        if attributes is not None:
+            for attr in attributes:
+                value = getattr(obj,attr)
+                #replace the referenced attribute by the one i remember: no catastrophic delivery of free information!
+                if type(value) is Item or type(value) is Location or type(value) is State or type(value) is Character:
+                    value = self.remember(value)
+                else if type(value) is list:
+                    newlist = []
+                    for item in list:
+                        newitem = self.remember(item)
+                        newlist.append(newitem)
+                        value = newlist
+                else if type(value) is dict:
+                    newdict = {}
+                    for (key,item) in items(value):
+                        newdict[key] = self.remember(item)
+                        value = newdict
+                        setattr(myobj,attr,value)
 
             
     def experience(self,date,event):
@@ -131,6 +140,13 @@ class Character:
     #TODO: infer what to do to get to goal HARD
     def doSomething(self):
         pass
+        #check all goals to see which have been satisfied
+        #if any goal has its non-action prerequisites satisfied, perform the required action(s)
+        #if any goal has all its prerequisites satisfied EXCEPT for being in the right location, move toward that location
+        #find a goal with no inputs identified--pick at random, and search the current location for someone to ask about it
+        #if no person to ask exists, go somewhere else at random!
+        
+        
     
     #give another character some info (which does not have to be the same type as was asked about)
 	#returns a boolean whether or not any information was given
@@ -145,6 +161,7 @@ class Character:
 		
         if myobj is Location:
             #TODO: say its catchphrase and attributes and up to five times either: a character who is there, a route that goes there, 
+            print_single("Ah, yes, I've been there. #catchphrase"
             for i in range(random.randInt(1,5)):
                 pass
                 #TODO: learn the asker the relevant info
@@ -162,13 +179,13 @@ class Character:
         if myobj is State:
             if myobj.character.name != character.name:
                 printutils.formatdialog(self.pronouns,"I'm afraid you won't be able to do that at all!","explained")
-            #TODO: say up to five times: an input to this state
-            for i in range(random.randInt(1,5)):
+            else:
                 pass
-                #TODO: learn the asker the relevant info
+                #TODO: learn the asker all inputs to this state (yes i realize a person won't always know everything about how to achieve something, but we're going to assume they do to simiplify algorithms
+
 				
         
-	#TODO: different ways of refusing to talk to someone. these should work even if they've been talking a bit
+	
     def refuse():
         refusals = ["Sorry mate, I have to get going", "No way, I can't tell you that", "That's a secret", "I'd love to tell you, but oh look, my house is on fire", "I'd tell you but I'd have to kill you", "Oh look, time for my daily ritual sacrifice", "I'm afraid you're not paying me nearly enough to know that. Nor are you attractive enough", "I know people like you can't keep a secret", "You want the truth? You can't handle the truth", "Nope, sorry", "Not on your life", "If the king can't know then you can't either", "Crossed my heart and hoped to die if I ever told. I also shook my bottom because I got 'em", "I don't think I could live with myself if you knew"] #and so on
         excuse = random.choice(refusals)
@@ -186,10 +203,10 @@ class Character:
     #TODO say a random exclamation
     def exclaim(self):
         if self.mood_goodbad > -1:
-            exclamation = random.choice(["Willickers!", "Wahoo!", "W00t!", "Bless your heart.", "Oh my god.", "Oh my goodness.", "Oooh.", "Cheers!", "Praise Helix", "Yay!", "Woohoo!", "Golly gee!", "Whee", "Shiny", "All glory to the Hypnotoad", "Neato", "Yesssss", "Excellent", "Great!"])
+            exclamation = random.choice(["Willickers!", "Wahoo!", "W00t!", "Bless your heart!", "Oh my god!", "Oh my goodness!", "Oooh.", "Cheers!", "Praise Helix!", "Yay!", "Woohoo!", "Golly gee!", "Wheeee~!", "Shiny!", "All glory to the Hypnotoad!", "Neato!", "Yesssss!!!", "Excellent!", "Great!"])
         else:
-            exclamation = random.choice(["Fuck this!", "Shit!", "Nooooooooooooooo.", "Fuck this shit.", "Motherfucker.", "Crap.", "Oh dear.", "Aaaaaah!", "Zounds!", "God's blood!", "Fie!", "Tut.", "Pooh!", "Merde.", "That sucks", "Uhoh", "Derp", "Balls", "Oh no"])
-		printutils.formatdialog(self.pronouns,introduction,"exclaimed")
+            exclamation = random.choice(["Fuck this!", "Shit!", "Nooooooooooooooo!", "Fuck this shit!", "Motherfucker!", "Crap!", "Oh dear!", "Aaaaaah!", "Zounds!", "God's blood!", "Fie!", "Tut", "Pooh!", "Merde!", "That sucks!", "Uhoh!", "Derp!", "Balls!", "Oh no!"])
+            printutils.formatdialog(self.pronouns,introduction,"exclaimed")
 		
     def go(self):
         self.location.move_along(self,route)
@@ -221,44 +238,66 @@ class Character:
                 success=False
             
         if success and item.name not in keys(items) and (len(items) < capacity or 'Bag of Holding' in keys(items)):
+            print_single("#sub took the "+item.name+" from "+character.name+".")
             items[item.name]=item
             if len(items)>capacity:
-                #TODO: decide what goes in bag of holding
+                bag = items['Bag of Holding']
+                moveitem = self.least_useful_item()
+                if moveitem==item:
+                    print_single("#sub couldn't find a way to carry or wear it, so #sub put it in #spos Bag of Holding.",self.pronouns)
+                else:
+                    print_single("#sub couldn't find a way to carry or wear it, so #sub put the "+moveitem.name+" in #spos Bag of Holding to make some space.",self.pronouns)
+                bag.add_subitem(moveitem)
+                items.remove(moveitem)
         else if success and item.name not in keys(items):
-            #TODO: decide what item to drop
-            pass
+            self.leave(self.least_useful_item())
         
-    #TODO: what do you do? this probably depends on the character so just put a default "stern warning" here and we'll modify it to something else for specific characters
     def catch_thief(self):
-        warning = random.choice(["You'll pay if you do that again.", "Hope you like the pokey.", "You get a warning this time. Don't make me warn you again.", "I'll let you go this time, but you better not be here when my big brother gets here."])
-        pass
+        warning = random.choice(["You'll pay if you do that again", "Hope you like the pokey", "You get a warning this time. Don't make me warn you again", "I'll let you go this time, but you better not be here when my big brother gets here"])
+        printutils.format(self.pronouns,warning,"growled")
     
     def offer(self,character,item):
+        blahblah = random.choice(["I think you should have this #item","Take this #item. It could be useful","Well, I guess you can have this #item, then","It's dangerous to go alone! Take this #item","Hmm, you seem pretty okay, I guess. I have this old #item if you want it.","Take this #item and get! I've got work to do"])
+        blahblah.replace("#item",item.name)
+        formatdialog(self.pronouns,blahblah,"offered")
         offered_item[character.name] = item
 
-    def offering(self,character,item)
+    def offering(self,character,item):
         return offered_item[character.name] is item
         
     #TODO: decide which item is no longer necessary, or won't be needed soonest, or just a random item
     def least_useful_item(self):
         pass
+        #starting with terminal goal, do a BFS of inputs, adding items to a list as their states appear. 
+        #if their states appear more again, delete them and move them to the end of the list
+        #when the BFS finishes, the first item on this list should be the one that is least likely to be needed soon
         
     def pick_up(self,item):
         success = (item in self.location.items)
         if success and item.name not in keys(items) and (len(items) < capacity or 'Bag of Holding' in keys(items)):
+            print_single("#sub grabbed the "+item.name+".")
+            self.items[item.name]=item
             if len(items)>capacity:
-                pass
-                #TODO: decide what goes in bag of holding
-        else if success and item.name not in keys(items):
-            leave(least_useful_item())
+                bag = items['Bag of Holding']
+                moveitem = self.least_useful_item()
+                if moveitem==item:
+                    print_single("#sub couldn't find a way to carry or wear it, so #sub put it in #spos Bag of Holding.",self.pronouns)
+                else:
+                    print_single("#sub couldn't find a way to carry or wear it, so #sub put the "+moveitem.name+" in #spos Bag of Holding to make some space.",self.pronouns)
+                bag.add_subitem(moveitem)
+                items.remove(moveitem)
+        else if success and item.name not in keys(self.items):
+            self.leave(least_useful_item())
         if success: 
             items[item.name]=item
             self.location.delete_item(item)
         
     def leave(self,item):
-        if item.name in keys(items):
-            items.remove(item)
-            location.add_item(item)
+        print_single("#sub tossed the "+item.name+" aside.",self.pronouns)
+        #TODO: add a fake copy of this item back to knowledge with this location
+        if item.name in keys(self.items):
+            self.items.remove(item)
+            self.location.add_item(item)
             
     def use(self,item):
         if item.name in keys(items):
