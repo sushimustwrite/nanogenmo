@@ -197,13 +197,16 @@ class Character:
     #TODO do something related to mood. come up with more emotes.
     #TODO if mood_goodbad is high, medium, low--set emote equal to something appropriate to mood
     def emote(self):
-    if self.mood_goodbad > 1:
-        emote = random.choice(["A large grin filled #name's face.", "#name's laugh filled the area.", "#name smiled.", "#name grinned."])
-    elif self.mood_goodbad < -1:
-        emote = random.choice(["#name kicked a rock several feet ahead.", "#name sighed deeply and stared at the ground.", "#name frowned.", "A grimace appeared on #name's face.", "#name was busy finger drumming", ])
-    else:
-        emote = random.choice(["#name looked ahead", "#name stared", "#name blinked", "#name swayed from side to side", "#name pushed back a lock of hair", ])
+    if self.mood_goodbad > 1 and self.mood_energy > 1: #happy and with energy
+        emote = random.choice(["A large grin filled #name's face", "#name's laugh filled the area", "#name smiled", "#name grinned", "#name bounced in place", "#name drummed to the beat of a familiar song", "#name did some vigorious jazz hands"])
+    elif self.mood_goodbad < -1 and self.mood_energy < -1: # unhappy and low energy
+        emote = random.choice(["#name kicked a rock several feet ahead", "#name sighed deeply and stared at the ground", "#name frowned", "A grimace appeared on #name's face", "#name turned away", "name stared into the distance"])
+    elif self.mood_goodbad < 2 and self.mood_energy > 1: # unhappy and high energy
+        emote = random.choice(["#name was busy finger drumming", "#name rocked from side to side", "#name adjusted #spos shirt", "#name looked around nervously", "#name tapped a tune with a stick", "#name shifted weight from one foot to the other", ])
+    else: # happy but low energy
+        emote = random.choice(["#name looked ahead", "#name stared", "#name blinked", "#name swayed from side to side", "#name pushed back a lock of hair", "A forced grin appeared on #name's face", "#name managed a smile", "#name leaned back", ])
     emote = emote.replace("#name", self.name)
+    emote = emote.replace("#pos", self.pronouns[
 
     def goodbye(self):
         farewell = random.choice(["Here's to you, kid", "Au revoir", "May Helix be with you", "Stay thirsty, my friend", "Live long and prosper", "May your genitals never be cursed off by an evil item", "Don't let the boogeyman get you", "Say hi to your mom for me", "Fare thee well", "Adieu", "So long and thanks for all the fish", "So long and may you die before you pass a kidney stone", "Zod be with you", "May Avandre bring you luck", "Baty blesses you", "I hope you get the bastard", "Y'all come back, ya hear", "Go face your next challenge", "See you around", "Stay alive", "Good night and good luck", "Peace", "Peace out", "Peach out", "God bless"])
