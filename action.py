@@ -14,7 +14,7 @@ class Action:
     def add_edge(self,edge):
         self.edges.append(edge)
         
-    def perform(self):
+    def perform(self,character):
         import random
         if random.random() < p_success:
             success_event.trigger()

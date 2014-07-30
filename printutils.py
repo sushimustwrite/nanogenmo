@@ -15,7 +15,7 @@ def return_single(string,pronouns):
     return multiple_replace(string, *replacements).title()+" "
 	
 def print_single(string,pronouns):
-	print return_single(string,pronouns)+
+	print return_single(string,pronouns)
     
 def return_double(string, pronouns1, pronouns2):
     replacements = ("#sub1",pronouns1['subject']), ("#spos1", pronouns1['subj_possess']), ("#opos1", pronouns1['obj_possess']), ("#obj1",pronouns1['object']), ("#ref1", pronouns1['reflex']), ("#sub2",pronouns2['subject']), ("#spos2", pronouns2['subj_possess']), ("#opos2", pronouns2['obj_possess']), ("#obj2",pronouns2['object']), ("#ref2", pronouns2['reflex'])
@@ -29,6 +29,9 @@ def formatdialog(pronouns,dialog,verb):
         print "\n\t\"{0}\" {1} {2}.\n".format(dialog,pronouns['subject'],verb)
     else:
         print "\n\t\"{0},\" {1} {2}.\n".format(dialog,pronouns['subject'],verb)
+        
+def new_paragraph():
+    print "\n\t"
 
 masculine = {'subject':'he','object':'him','subj_possess':'his','obj_possess':'his','reflex':'himself'}
 feminine = {'subject':'she','object':'her','subj_possess':'her','obj_possess':'hers','reflex':'herself'}
