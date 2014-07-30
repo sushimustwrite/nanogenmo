@@ -301,7 +301,7 @@ class Character:
         tovisit = [self.root_goal]
     
         for state in tovisit: #looking at one particular state
-            if type(state) is Item_State:
+            if type(state) is Item_State and state.item in self.items:
                 if state.item in items:
                     items.remove(state.item)
                 items.append(state.item)
@@ -309,7 +309,11 @@ class Character:
                 for e in v: #now e is some particular edge
                     if e.sfrom not in tovisit:
                         tovisit.append(e.sfrom)
-        return items[0]
+        if len(items)>0:
+            return items[0]
+        else:
+            #TODO: it would be smarter to search FORWARD from current state in this situation
+            return random.choice(self.items)
         #starting with terminal goal, do a BFS of inputs, adding items to a list as their states appear. 
         #if their states appear more again, delete them and move them to the end of the list
         #when the BFS finishes, the first item on this list should be the one that is least likely to be needed soon
