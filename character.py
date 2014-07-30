@@ -32,6 +32,7 @@ class Character:
         else:
             self.goals = goals
             root_goal = goal[0]
+        anti_goals = []
         if items is None:
             self.items = []
         else:
@@ -68,12 +69,20 @@ class Character:
             mood_energy = -10
             
     def add_goal(self,goal):
-        goal = remember(goal)
-        if goal is None:
+        mygoal = remember(goal)
+        if mygoal is None:
             self.learn(goal)
-        goal = remember(goal)
-        if goal not in goals:
-            goals.add(goal)
+        mygoal = remember(goal)
+        if mygoal not in goals:
+            goals.add(mygoal)
+    
+    def add_anti_goal(self,goal):
+        mygoal = remember(goal)
+        if mygoal is None:
+            self.learn(goal)
+        mygoal = remember(goal)
+        if mygoal not in anti_goals:
+            anti_goals.add(mygoal)
             
     def add_terminal_goal(self,goal):
         self.add_goal(goal)
@@ -141,10 +150,27 @@ class Character:
     def doSomething(self):
         pass
         #check all goals to see which have been satisfied
+        continue = True
+        for goal in goals:
+            action = goal.get_required_action()
+            if action is not None:
+                action.perform()
+                continue=False
+                break
+        if continue:
+            for goal in anti_goals:
+                action = goal.get_required_off_action()
+                if action is not None:
+                    action.perform()
+                    continue=False
+                    break
         #if any goal has its non-action prerequisites satisfied, perform the required action(s)
+            
         #if any goal has all its prerequisites satisfied EXCEPT for being in the right location, move toward that location
         #find a goal with no inputs identified--pick at random, and search the current location for someone to ask about it
         #if no person to ask exists, go somewhere else at random!
+        
+        printutils.new_paragraph()
         
         
     
@@ -159,24 +185,24 @@ class Character:
             printutils.formatdialog(self.pronouns,"I'm afraid I don't know anything about that","said")
             return false
 		
-        if myobj is Location:
+        if type(myobj) is Location:
             #TODO: say its catchphrase and attributes and up to five times either: a character who is there, a route that goes there, 
             print_single("Ah, yes, I've been there. #catchphrase"
             for i in range(random.randInt(1,5)):
                 pass
                 #TODO: learn the asker the relevant info
                 return true
-        if myobj is Item:
-            #TODO: say its catchphrase and attributes and up to five times either: where it is, what it is does, or what it can accomplish (one state it can be used to get to)
+        if type(myobj) is Item:
+            #TODO: say its catchphrase and attributes and up to five times either: where it is/who has it, what it does, or what it can accomplish (one state it can be used to get to)
             for i in range(random.randInt(1,5)):
                 pass
                 #TODO: learn the asker the relevant info
-        if myobj is Character:
+        if type(myobj) is Character:
             #TODO: say its catchphrase and attributes and up to five times either: their current location, their current goal, an item they have, a bit of history
             for i in range(random.randInt(1,5)):
                 pass
                 #TODO: learn the asker the relevant info
-        if myobj is State:
+        if type(myobj) is State:
             if myobj.character.name != character.name:
                 printutils.formatdialog(self.pronouns,"I'm afraid you won't be able to do that at all!","explained")
             else:
@@ -214,16 +240,16 @@ class Character:
     #TODO do something related to mood. come up with more emotes.
     #TODO if mood_goodbad is high, medium, low--set emote equal to something appropriate to mood
     def emote(self):
-    if self.mood_goodbad > 1 and self.mood_energy > 1: #happy and with energy
-        emote = random.choice(["A large grin filled #name's face", "#name's laugh filled the area", "#name smiled", "#name grinned", "#name bounced in place", "#name drummed to the beat of a familiar song", "#name did some vigorious jazz hands"])
-    elif self.mood_goodbad < -1 and self.mood_energy < -1: # unhappy and low energy
-        emote = random.choice(["#name kicked a rock several feet ahead", "#name sighed deeply and stared at the ground", "#name frowned", "A grimace appeared on #name's face", "#name turned away", "name stared into the distance"])
-    elif self.mood_goodbad < 2 and self.mood_energy > 1: # unhappy and high energy
-        emote = random.choice(["#name was busy finger drumming", "#name rocked from side to side", "#name adjusted #spos shirt", "#name looked around nervously", "#name tapped a tune with a stick", "#name shifted weight from one foot to the other", ])
-    else: # happy but low energy
-        emote = random.choice(["#name looked ahead", "#name stared", "#name blinked", "#name swayed from side to side", "#name pushed back a lock of hair", "A forced grin appeared on #name's face", "#name managed a smile", "#name leaned back", ])
-    emote = emote.replace("#name", self.name)
-    emote = emote.replace("#pos", self.pronouns[
+        if self.mood_goodbad > 1 and self.mood_energy > 1: #happy and with energy
+            emote = random.choice(["A large grin filled #name's face", "#name's laugh filled the area", "#name smiled", "#name grinned", "#name bounced in place", "#name drummed to the beat of a familiar song", "#name did some vigorious jazz hands"])
+        elif self.mood_goodbad < -1 and self.mood_energy < -1: # unhappy and low energy
+            emote = random.choice(["#name kicked a rock several feet ahead", "#name sighed deeply and stared at the ground", "#name frowned", "A grimace appeared on #name's face", "#name turned away", "name stared into the distance"])
+        elif self.mood_goodbad < 2 and self.mood_energy > 1: # unhappy and high energy
+            emote = random.choice(["#name was busy finger drumming", "#name rocked from side to side", "#name adjusted #spos shirt", "#name looked around nervously", "#name tapped a tune with a stick", "#name shifted weight from one foot to the other", ])
+        else: # happy but low energy
+            emote = random.choice(["#name looked ahead", "#name stared", "#name blinked", "#name swayed from side to side", "#name pushed back a lock of hair", "A forced grin appeared on #name's face", "#name managed a smile", "#name leaned back", ])
+        emote = emote.replace("#name", self.name)
+        emote = emote.replace("#pos", self.pronouns[
 
     def goodbye(self):
         farewell = random.choice(["Here's to you, kid", "Au revoir", "May Helix be with you", "Stay thirsty, my friend", "Live long and prosper", "May your genitals never be cursed off by an evil item", "Don't let the boogeyman get you", "Say hi to your mom for me", "Fare thee well", "Adieu", "So long and thanks for all the fish", "So long and may you die before you pass a kidney stone", "Zod be with you", "May Avandre bring you luck", "Baty blesses you", "I hope you get the bastard", "Y'all come back, ya hear", "Go face your next challenge", "See you around", "Stay alive", "Good night and good luck", "Peace", "Peace out", "Peach out", "God bless"])
@@ -240,18 +266,19 @@ class Character:
                 character.catch_thief()
                 success=False
             
-        if success and item.name not in keys(items) and (len(items) < capacity or 'Bag of Holding' in keys(items)):
+        if success and item.name not in keys(self.items) and (len(self.items) < capacity or 'Bag of Holding' in keys(self.items)):
             print_single("#sub took the "+item.name+" from "+character.name+".")
-            items[item.name]=item
-            if len(items)>capacity:
-                bag = items['Bag of Holding']
+            self.items[item.name]=item
+            self.knowledge['items'][item.name]=item
+            if len(self.items)>capacity:
+                bag = self.items['Bag of Holding']
                 moveitem = self.least_useful_item()
                 if moveitem==item:
                     print_single("#sub couldn't find a way to carry or wear it, so #sub put it in #spos Bag of Holding.",self.pronouns)
                 else:
                     print_single("#sub couldn't find a way to carry or wear it, so #sub put the "+moveitem.name+" in #spos Bag of Holding to make some space.",self.pronouns)
                 bag.add_subitem(moveitem)
-                items.remove(moveitem)
+                self.items.remove(moveitem)
         else if success and item.name not in keys(items):
             self.leave(self.least_useful_item())
         
@@ -289,9 +316,10 @@ class Character:
         
     def pick_up(self,item):
         success = (item in self.location.items)
-        if success and item.name not in keys(items) and (len(items) < capacity or 'Bag of Holding' in keys(items)):
+        if success and item.name not in keys(self.items) and (len(self.items) < capacity or 'Bag of Holding' in keys(self.items)):
             print_single("#sub grabbed the "+item.name+".")
             self.items[item.name]=item
+            self.knowledge['items'][item.name]=item
             if len(items)>capacity:
                 bag = items['Bag of Holding']
                 moveitem = self.least_useful_item()
@@ -309,10 +337,12 @@ class Character:
         
     def leave(self,item):
         print_single("#sub tossed the "+item.name+" aside.",self.pronouns)
-        #TODO: add a fake copy of this item back to knowledge with this location
         if item.name in keys(self.items):
             self.items.remove(item)
             self.location.add_item(item)
+            item.location = self.location
+            item.owner = None
+            self.learn(item,['location', 'owner', 'subitems'])
             
     def use(self,item):
         if item.name in keys(items):

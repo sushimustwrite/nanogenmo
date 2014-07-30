@@ -55,6 +55,46 @@ class State:
             triggered = True
             event_arrival.trigger()
         return True
+        
+    def get_action_for(self, edge):
+        for action in positiveactions:
+            for x in action.edges:
+                if edge is x:
+                    return action
+                    
+    def get_negative_action_for(self, edge):
+        for action in negativeactions:
+            for x in action.edges:
+                if edge is x:
+                    return action
+        
+    def get_required_action(self):
+        if self.is_on():
+            return None
+        for conj in self.inputs.values():
+            on = True
+            action_to_take = None
+            for edge in conj:
+                on = on and (edge.is_on() or edge.sfrom.is_on())
+                if action_to_take is None and not edge.is_on():
+                    action_to_take = get_action_for(edge)
+            if on: #we should not be here unless there is an action to be taken
+                return action_to_take
+        return None
+    
+    def get_required_off_action(self):
+        if not self.is_on():
+            return None
+        for conj in self.negativeinputs.values():
+            on = True
+            action_to_take = None
+            for edge in conj:
+                on = on and (edge.is_on() or edge.sfrom.is_on())
+                if action_to_take is None and not edge.is_on():
+                    action_to_take = get_negative_action_for(edge)
+            if on: #we should not be here unless there is an action to be taken
+                return action_to_take
+        return None
     
     def is_canceled(self):
         for conj in self.negatedinputs.values():
