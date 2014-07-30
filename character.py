@@ -270,7 +270,19 @@ class Character:
         
     #TODO: decide which item is no longer necessary, or won't be needed soonest, or just a random item
     def least_useful_item(self):
-        pass
+        items = []
+        tovisit = [self.root_goal]
+    
+        for state in tovisit: #looking at one particular state
+            if type(state) is Item_State:
+                if state.item in items:
+                    items.remove(state.item)
+                items.append(state.item)
+            for v in state.input.values: #v is some list of edges
+                for e in v: #now e is some particular edge
+                    if e.sfrom not in tovisit:
+                        tovisit.append(e.sfrom)
+        return items[0]
         #starting with terminal goal, do a BFS of inputs, adding items to a list as their states appear. 
         #if their states appear more again, delete them and move them to the end of the list
         #when the BFS finishes, the first item on this list should be the one that is least likely to be needed soon
