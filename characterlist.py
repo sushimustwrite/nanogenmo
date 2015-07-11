@@ -1,62 +1,64 @@
-major_character[""] = character.Character("Protagovitch", "male", "(That's #obj!)", location=None, "not very tall and not very handsome, but with a heart of gold", items=None)
+#TODO: name their dictionary locations
 
-had a past lover (Protagzekslova) in his village, but she died tragically when she licked a poisonous mushroom
+major_character["Protagovitch"] = character.Character("Protagovitch", "male", "(That's #obj!)", location=None, "not very tall and not very handsome, but with a heart of gold", items=None)
 
-dad died when he was eaten by a grue. Protagovitch was 14 at the time.
+#had a past lover (Protagzekslova) in his village, but she died tragically when she licked a poisonous mushroom
 
-killed the grue as payback
+#dad died when he was eaten by a grue. Protagovitch was 14 at the time.
 
-he has a heart of gold because he's been hurt so many times. He's very trusting.
+#killed the grue as payback
 
-loving and emotionally strong
+#he has a heart of gold because he's been hurt so many times. He's very trusting.
 
-educated at home by his mother
+#loving and emotionally strong
 
-knows how to read and write
+#educated at home by his mother
 
-has a perfect memory
+#knows how to read and write
 
-no siblings
+#has a perfect memory
 
-fell out of animate tree as a child and broke several bones, and acquired a cool-looking scar on his face
+#no siblings
 
-still in touch with several childhood friends as they still live in the village
+#fell out of animate tree as a child and broke several bones, and acquired a cool-looking scar on his face
 
-once ate a dozen crickets at once to win a bet
+#still in touch with several childhood friends as they still live in the village
 
-
-major_character[""] = character.Character("Antagovitch", "male", "catchphrase", location=None, "tall and attractive with a hunger for power", items=None)
-
-never saw his parents much as a child; they usually left him with nannies while they spent away their inheritance
-
-dreamed of taking over the world
-
-after finishing his education, he heard of the empire far away and walked the entire trip there
-
-beat the demon in an arm-wrestling match on his way to the empire, received charisma in exchange for his hair
-
-somehow looks even better bald than with hair
-
-showed up at the castle ragged and with a broken nose after a fight with a troll (his nose is still a little crooked)
-
-he offered to be their servant, then worked his way up as people died adn he sucked up to people
-
-wanted to take over the world so everyone could be his friend
-
-his childhood friends all died mysterious deaths. he may or may not have been involved.
-
-never had a girlfriend or boyfriend
+#once ate a dozen crickets at once to win a bet
 
 
-major_character[""] = character.Character("Protagslova", "female", "A vos souhaits", location=None, "wavy red hair, piercing blue eyes, and a smile that melts hearts", items=None)
+major_character["Antagovitch"] = character.Character("Antagovitch", "male", "catchphrase", location=None, "tall and attractive with a hunger for power", items=None)
 
-loves trees and treehouses
+#never saw his parents much as a child; they usually left him with nannies while they spent away their inheritance
 
-when she was five, her brother cut all her hair off. it grew back instantly.
+#dreamed of taking over the world
 
-witnessed Protagovitch kill the grue but could barely see it was him
+#after finishing his education, he heard of the empire far away and walked the entire trip there
 
-super night vision
+#beat the demon in an arm-wrestling match on his way to the empire, received charisma in exchange for his hair
+
+#somehow looks even better bald than with hair
+
+#showed up at the castle ragged and with a broken nose after a fight with a troll (his nose is still a little crooked)
+
+#he offered to be their servant, then worked his way up as people died adn he sucked up to people
+
+#wanted to take over the world so everyone could be his friend
+
+#his childhood friends all died mysterious deaths. he may or may not have been involved.
+
+#never had a girlfriend or boyfriend
+
+
+major_character["Protagslova"] = character.Character("Protagslova", "female", "A vos souhaits", location=None, "wavy red hair, piercing blue eyes, and a smile that melts hearts", items=None)
+
+#loves trees and treehouses
+
+#when she was five, her brother cut all her hair off. it grew back instantly.
+
+#witnessed Protagovitch kill the grue but could barely see it was him
+
+#super night vision
 
 
 major_characters["Dolga"] = character.Character("Dolga", "neutral", "That's an awfully long name. That's an awfully long dragon.", "shiny red and breathe", location=None, items="scale")

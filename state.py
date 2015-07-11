@@ -38,7 +38,7 @@ class State:
                 self.inputs[name]=[]
             self.inputs[name].append(edgeobject)
     
-    #check if any of the inputs is satisfied and none of the negated inputs are satisfied
+    #check if any of the positive inputs is satisfied and none of the negated inputs are satisfied
     def is_on(self):
         for conj in self.inputs.values():
             on = True
@@ -113,7 +113,7 @@ class Location_State(State):
     def is_on(self):
         return character in location.characters_present and super(Location_State,self).is_on()
         
-class Sticky_State(State):
+class Sticky_State(State): #events
     def __init__(self, name, namepast, character, event_arrival=None):
         super(Location_State,self).__init__(name,namepast,character,event_arrival)
     

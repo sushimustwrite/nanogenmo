@@ -1,9 +1,9 @@
 Create characters
-Create goal graph
+Create goal graph - story (this is on the poster)
 Map cities/villages/important buildings
 Turn map into map graph
 Create items
-Rules of the game (how does this all work together)
+Rules of the game (how does this all work together) (how to take turns,etc)
 
 
 Create some test characters locations items
@@ -14,3 +14,5 @@ COME UP WITH THE ALGORITHM THAT TURNS STATES AND GOALS INTO ACTIONS (how to get 
 Map class: needs pathfinding algorithm. what else?
 
 add string prints to all of Character's actions
+
+write code to test printutils.py

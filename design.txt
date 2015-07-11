@@ -17,7 +17,7 @@ Character
 --a dictionary of items named mapped to pruned item objects (default known if at all: name, catchphrase)
 --a dictionary of character names mapped to pruned character objects (default: name, attributes, catchphrase)
 --a dictionary of dates mapped to events
--Relationship
+-Relationship: decide what relationships are options, which ones we want to keep track of
 -Verbs
 -Catchphrase
 

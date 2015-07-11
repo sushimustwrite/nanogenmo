@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
+#TODO: under_scores, not CamelCase
+
 class Event:
     
     def __init__(self,location,description,update_fun):
-        self.location = location
-        self.description = description
-        self.update_fun = update_fun
+        self.location = location #where the event happens
+        self.description = description #description (paragraph) of the event), including character's name, pronouns, all that jazz
+        self.update_fun = update_fun #function that happens when created in the plot file
         
-    def trigger(self):
+    def trigger(self): #triggers the function, causes a paragraph to get printed
         import utility
         print description
         update_fun(location)

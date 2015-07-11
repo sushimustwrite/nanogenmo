@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # -*- coding: utf-8 -*-
 states = []
 major_characters = []
@@ -21,7 +21,11 @@ locations = [];
 #leave items=none for all, we'll make a note of who has items later
 major_characters["Protagovitch"] = character.Character("Protagovitch", "male", "(That's #obj!)", "not very tall and not very handsome, but with a heart of gold", location=None, items=None)
 
+protagonist = major_characters["Protagovitch"]
+
 major_characters["Antagovitch"] = character.Character("Antagovitch", "male", "catchphrase", "tall and attractive with a hunger for power", location=None, items=None)
+
+antagonist = major_characters["Antagovitch"]
 
 major_characters["Protagslova"] = character.Character("Protagslova", "female", "A vos souhaits", "wavy red hair, piercing blue eyes, and a smile that melts hearts",  location=None, items=None)
 
@@ -84,4 +88,4 @@ major_character["Werewolf"] = character.Character("Werewolf", "male", "", "", lo
 major_character["Vucagorod"] = character.Character("Vucagorod", "male", "", "", location=None, items=None)
 
 major_character["Gamayun the Bird"] = character.Character("Gamayun the Bird", "female", "Wings and breasts, just like chicken", "half-bird, half-woman with all the best features of both", location=None, items=None)
->>>>>>> ce03cbb7172a2b6c63abc41e8e420bbc4d078a33
+

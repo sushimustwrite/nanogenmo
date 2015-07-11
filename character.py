@@ -11,6 +11,9 @@ class Character:
     hasBag = False
     offered_item = {}
     root_goal = None
+
+#TODO: Add relationships (with other characters, etc)
+#TODO: Add random reflect method (lets them talk motivation) and a random character/action method
     
     
     def __init__(self, name, gender, catchphrase, attributes, location=None, items=None, goals=None, history=None):
@@ -176,6 +179,7 @@ class Character:
     
     #give another character some info (which does not have to be the same type as was asked about)
 	#returns a boolean whether or not any information was given
+    #after the first time add "Did I mention" "Did you know" "I can't remember if I said" things like that to some of the dialogues
     def tell(self,character,obj):
         if random.rand()>0.8:
             self.refuse()
@@ -187,10 +191,10 @@ class Character:
 		
         if type(myobj) is Location:
             #TODO: say its catchphrase and attributes and up to five times either: a character who is there, a route that goes there, 
-            print_single("Ah, yes, I've been there. #catchphrase"
+            print_single("Ah, yes, I've been there. #catchphrase")
             for i in range(random.randInt(1,5)):
                 pass
-                #TODO: learn the asker the relevant info
+                #TODO: learn the asker the relevant info, add knowledge item to character's knowledge
                 return true
         if type(myobj) is Item:
             #TODO: say its catchphrase and attributes and up to five times either: where it is/who has it, what it does, or what it can accomplish (one state it can be used to get to)
@@ -213,7 +217,7 @@ class Character:
         
 	
     def refuse():
-        refusals = ["Sorry mate, I have to get going", "No way, I can't tell you that", "That's a secret", "I'd love to tell you, but oh look, my house is on fire", "I'd tell you but I'd have to kill you", "Oh look, time for my daily ritual sacrifice", "I'm afraid you're not paying me nearly enough to know that. Nor are you attractive enough", "I know people like you can't keep a secret", "You want the truth? You can't handle the truth", "Nope, sorry", "Not on your life", "If the king can't know then you can't either", "Crossed my heart and hoped to die if I ever told. I also shook my bottom because I got 'em", "I don't think I could live with myself if you knew"] #and so on
+        refusals = ["Sorry mate, I have to get going", "No way, I can't tell you that", "That's a secret", "I'd love to tell you, but oh look, my house is on fire", "I'd tell you but I'd have to kill you", "Oh look, time for my daily ritual sacrifice", "I'm afraid you're not paying me nearly enough to know that. Nor are you attractive enough", "No way. I know people like you can't keep a secret", "You want the truth? You can't handle the truth", "Nope, sorry", "Not on your life", "If the king can't know, then you can't either", "Crossed my heart and hoped to die if I ever told. I also shook my bottom because I got 'em", "I don't think I could live with myself if you knew"] #and so on #TODO Add more of these refusals
         excuse = random.choice(refusals)
         printutils.formatdialog(self.pronouns,excuse,"replied")
 
@@ -231,7 +235,7 @@ class Character:
         if self.mood_goodbad > -1:
             exclamation = random.choice(["Willickers!", "Wahoo!", "W00t!", "Bless your heart!", "Oh my god!", "Oh my goodness!", "Oooh.", "Cheers!", "Praise Helix!", "Yay!", "Woohoo!", "Golly gee!", "Wheeee~!", "Shiny!", "All glory to the Hypnotoad!", "Neato!", "Yesssss!!!", "Excellent!", "Great!"])
         else:
-            exclamation = random.choice(["Fuck this!", "Shit!", "Nooooooooooooooo!", "Fuck this shit!", "Motherfucker!", "Crap!", "Oh dear!", "Aaaaaah!", "Zounds!", "God's blood!", "Fie!", "Tut", "Pooh!", "Merde!", "That sucks!", "Uhoh!", "Derp!", "Balls!", "Oh no!"])
+            exclamation = random.choice(["Fuck this!", "Shit!", "Nooooooooooooooo!", "Fuck this shit!", "Motherfucker!", "Crap!", "Oh dear!", "Aaaaaah!", "Zounds!", "God's blood!", "Fie!", "Tut", "Pooh!", "Merde!", "That sucks!", "Oh shit balls!", "Holy fish", "Damnit!", "Asscakes", "Uhoh!", "Derp!", "Balls!", "Oh no!", "Oy vey!"]) #add more of these too
             printutils.formatdialog(self.pronouns,introduction,"exclaimed")
 		
     def go(self):
@@ -249,10 +253,10 @@ class Character:
         else: # happy but low energy
             emote = random.choice(["#name looked ahead", "#name stared", "#name blinked", "#name swayed from side to side", "#name pushed back a lock of hair", "A forced grin appeared on #name's face", "#name managed a smile", "#name leaned back", ])
         emote = emote.replace("#name", self.name)
-        emote = emote.replace("#pos", self.pronouns[
+        emote = emote.replace("#pos", self.pronouns) #TODO: Add lots more of these
 
     def goodbye(self):
-        farewell = random.choice(["Here's to you, kid", "Au revoir", "May Helix be with you", "Stay thirsty, my friend", "Live long and prosper", "May your genitals never be cursed off by an evil item", "Don't let the boogeyman get you", "Say hi to your mom for me", "Fare thee well", "Adieu", "So long and thanks for all the fish", "So long and may you die before you pass a kidney stone", "Zod be with you", "May Avandre bring you luck", "Baty blesses you", "I hope you get the bastard", "Y'all come back, ya hear", "Go face your next challenge", "See you around", "Stay alive", "Good night and good luck", "Peace", "Peace out", "Peach out", "God bless"])
+        farewell = random.choice(["Here's to you, kid", "Au revoir", "May Helix be with you", "Stay thirsty, my friend", "Live long and prosper", "May your genitals never be cursed off by an evil item", "Don't let the boogeyman get you", "Say hi to your mom for me", "Fare thee well", "Adieu", "So long and thanks for all the fish", "So long and may you die before you pass a kidney stone", "Zod be with you", "May Avandre bring you luck", "Baty blesses you", "I hope you get the bastard", "Y'all come back, ya hear", "Go face your next challenge", "See you around", "Stay alive", "Good night and good luck", "Peace", "Peace out", "Peach out", "God bless", "May your life be long and interesting", "Why don't you come up and see me sometime?"])
         printutils.formatdialog(self.name,farewell,"said")
     
     #TODO output some text about this action
@@ -274,22 +278,22 @@ class Character:
                 bag = self.items['Bag of Holding']
                 moveitem = self.least_useful_item()
                 if moveitem==item:
-                    print_single("#sub couldn't find a way to carry or wear it, so #sub put it in #spos Bag of Holding.",self.pronouns)
+                    printutils.print_single("#sub couldn't find a way to carry or wear it, so #sub put it in #spos Bag of Holding.",self.pronouns)
                 else:
-                    print_single("#sub couldn't find a way to carry or wear it, so #sub put the "+moveitem.name+" in #spos Bag of Holding to make some space.",self.pronouns)
+                    printutils.print_single("#sub couldn't find a way to carry or wear it, so #sub put the "+moveitem.name+" in #spos Bag of Holding to make some space.",self.pronouns)
                 bag.add_subitem(moveitem)
                 self.items.remove(moveitem)
         else if success and item.name not in keys(items):
             self.leave(self.least_useful_item())
         
     def catch_thief(self):
-        warning = random.choice(["You'll pay if you do that again", "Hope you like the pokey", "You get a warning this time. Don't make me warn you again", "I'll let you go this time, but you better not be here when my big brother gets here"])
-        printutils.format(self.pronouns,warning,"growled")
+        warning = random.choice(["You'll pay if you do that again", "Hope you like the pokey", "You get a warning this time. Don't make me warn you again", "I'll let you go this time, but you better not be here when my big brother gets here", "STOP THIEF!", "Joke's on you. That one's a fake", "If i ever see your face again, I'm gonna give you an icepick lobotomy"]) #TODO: Add more of these
+        printutils.formatdialog(self.pronouns,warning,"growled")
     
     def offer(self,character,item):
         blahblah = random.choice(["I think you should have this #item","Take this #item. It could be useful","Well, I guess you can have this #item, then","It's dangerous to go alone! Take this #item","Hmm, you seem pretty okay, I guess. I have this old #item if you want it.","Take this #item and get! I've got work to do"])
         blahblah.replace("#item",item.name)
-        formatdialog(self.pronouns,blahblah,"offered")
+        printutils.formatdialog(self.pronouns,blahblah,"offered")
         offered_item[character.name] = item
 
     def offering(self,character,item):
@@ -352,6 +356,9 @@ class Character:
     def ask(self,character,obj):
 		#TODO: phrase information request sensibly
 		#Do you know anything about ...?
+        queries = random.choice(["Do you know anything about #thing?", "What do you know about #thing?", "What can you tell me about #thing?", "I beg you. Can you tell me about #thing?", "I don't mean to bother you, but would you please tell me about #thing?", "What would it take to convince you to tell me about #thing?"]) #TODO Add more of these
+        queries.replace("#thing", obj.name)
+        printutils.formatdialog(self.pronouns, queries, "asked")
 		character.tell(self,obj)
         
         

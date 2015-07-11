@@ -25,7 +25,7 @@ def print_double(string, pronouns1, pronouns2):
     print return_double(string, pronouns1, pronouns2)
 	
 def formatdialog(pronouns,dialog,verb):
-    if dialog[-1]=="!":
+    if dialog[-1]=="!" or dialog[-1] == "?":
         print "\n\t\"{0}\" {1} {2}.\n".format(dialog,pronouns['subject'],verb)
     else:
         print "\n\t\"{0},\" {1} {2}.\n".format(dialog,pronouns['subject'],verb)

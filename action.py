@@ -4,7 +4,7 @@ class Action:
     #for instance name would be "grab the Sword of Penetration"
     #while d_event is an Event with "#sub grabbed the sword and tilted it until it broke free from the cleft, then hefted it above #pos head to watch it shine in the sun. #sub tied the hilt to #pos belt and stepped down determinedly."
     #p_success is probability of success
-    #sform is state which holds/allows this action
+    #sfrom is state which holds/allows this action
     def __init__(self, name, success_event, failure_event, p_success, sfrom):
         self.name = name
         self.d_event = d_event

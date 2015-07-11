@@ -144,6 +144,7 @@ class Sublocation(Location):
 
 class Entrance(Sublocation):
     pass
+#TODO entrance needs to let us go to a completely different location on map (like from house to castle)
 
 class Route:
     def __init__(self, name, attributes, endpoint1, endpoint2):
