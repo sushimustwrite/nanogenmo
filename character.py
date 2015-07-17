@@ -236,7 +236,7 @@ class Character:
             exclamation = random.choice(["Willickers!", "Wahoo!", "W00t!", "Bless your heart!", "Oh my god!", "Oh my goodness!", "Oooh.", "Cheers!", "Praise Helix!", "Yay!", "Woohoo!", "Golly gee!", "Wheeee~!", "Shiny!", "All glory to the Hypnotoad!", "Neato!", "Yesssss!!!", "Excellent!", "Great!"])
         else:
             exclamation = random.choice(["Fuck this!", "Shit!", "Nooooooooooooooo!", "Fuck this shit!", "Motherfucker!", "Crap!", "Oh dear!", "Aaaaaah!", "Zounds!", "God's blood!", "Fie!", "Tut", "Pooh!", "Merde!", "That sucks!", "Oh shit balls!", "Holy fish", "Damnit!", "Asscakes", "Uhoh!", "Derp!", "Balls!", "Oh no!", "Oy vey!"]) #add more of these too
-            printutils.formatdialog(self.pronouns,introduction,"exclaimed")
+            printutils.formatdialog(self.pronouns,exclamation,"exclaimed")
 		
     def go(self):
         self.location.move_along(self,route)
