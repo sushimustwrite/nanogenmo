@@ -98,7 +98,7 @@ class Character:
             
     #find my own version of this object, 
     def remember(self,obj):
-	myobj=obj
+	    myobj=None
         if type(obj) is Location:
             myobj=self.knowledge['locations'].get(obj.name)
         else if type(obj) is Item:
@@ -191,9 +191,10 @@ class Character:
 		
         if type(myobj) is Location:
             #TODO: say its catchphrase and attributes and up to five times either: a character who is there, a route that goes there, 
-            print_single("Ah, yes, I've been there. #catchphrase")
+            printutils.print_single("Ah, yes, I've been there. #catchphrase")
             for i in range(random.randInt(1,5)):
-                pass
+                #pass
+                
                 #TODO: learn the asker the relevant info, add knowledge item to character's knowledge
                 return true
         if type(myobj) is Item:
@@ -204,6 +205,7 @@ class Character:
         if type(myobj) is Character:
             #TODO: say its catchphrase and attributes and up to five times either: their current location, their current goal, an item they have, a bit of history
             for i in range(random.randInt(1,5)):
+                printutils.formatdialog(self.pronouns,
                 pass
                 #TODO: learn the asker the relevant info
         if type(myobj) is State:
@@ -216,8 +218,8 @@ class Character:
 				
         
 	
-    def refuse():
-        refusals = ["Sorry mate, I have to get going", "No way, I can't tell you that", "That's a secret", "I'd love to tell you, but oh look, my house is on fire", "I'd tell you but I'd have to kill you", "Oh look, time for my daily ritual sacrifice", "I'm afraid you're not paying me nearly enough to know that. Nor are you attractive enough", "No way. I know people like you can't keep a secret", "You want the truth? You can't handle the truth", "Nope, sorry", "Not on your life", "If the king can't know, then you can't either", "Crossed my heart and hoped to die if I ever told. I also shook my bottom because I got 'em", "I don't think I could live with myself if you knew"] #and so on #TODO Add more of these refusals
+    def refuse(self):
+        refusals = ["Sorry mate, I have to get going", "No way, I can't tell you that", "That's a secret", "I'd love to tell you, but oh look, my house is on fire", "I'd tell you but I'd have to kill you", "Oh look, time for my daily ritual sacrifice", "I'm afraid you're not paying me nearly enough to know that. Nor are you attractive enough", "No way. I know people like you can't keep a secret", "You want the truth? You can't handle the truth", "Nope, sorry", "Not on your life", "If the king can't know, then you can't either", "Crossed my heart and hoped to die if I ever told. I also shook my bottom because I got 'em", "I don't think I could live with myself if you knew","Sure, I'll tell you...nope, changed my mind","I swore to the gods above to never tell"] #and so on #TODO Add more of these refusals
         excuse = random.choice(refusals)
         printutils.formatdialog(self.pronouns,excuse,"replied")
 
@@ -225,7 +227,7 @@ class Character:
     #TODO name him/herself and give a random event from his/her history
     def introduce(self):
         greeting = random.choice(["Greetings, traveler", "Yo", "Hello, friend", "Oy, fancy meeting you here", "Sup", "Bonjour", "Hola", "Duuuuuude", "HODOR", "Lfhaifsodif", "My oh my, lovely to meet you", "How YOU doin'", "Fancy a cuppa", "Who are you", "Top of the morning to you,", "Privet", "Zdorovat'sya", "Hallo", "Zvat'", "Oklikat'", "Hey", "Ahoy", "Aey", "V chem delo?", "How's it going?", "Hey sexy", "Well, look who's here", "Do I know you?", "Hey Jamie. It is Jamie, right?", "Genya! I haven't seen you in forever", "Oh, sorry. I thought you were someone else", "Can I bum a cig off you?", "Hey pal, do you have a few bucks?", "Have I see you somewhere before?", "Howdy", "What's a nice person like you doing in a place like this?", "What are you doing here?", "Good day to you", "Nice to meet you", "Salutations"])
-        introduction = random.choice(["I am #name. #catchphrase", "You may call me #name. #catchphrase", "You're probably wondering who I am. I am #name. #catchphrase", "#catchphrase. I am #name", "#name's the name. #catchphrase", "Good to meetcha. I'm #name", "You don't know me? Oh right, you don't. I'm #name"])
+        introduction = random.choice(["I am #name. #catchphrase", "You may call me #name. #catchphrase", "You're probably wondering who I am. I am #name. #catchphrase", "#catchphrase. I am #name", "#name's the name. #catchphrase", "Good to meetcha. I'm #name", "You don't know me? Oh right, you don't. I'm #name","I'm #name. As I like to say, #catchphrase"])
         introduction = introduction.replace("#name", self.name)
         introduction = introduction.replace("#catchphrase", self.catchphrase)
 		printutils.formatdialog(self.pronouns,introduction,"said")
@@ -236,7 +238,7 @@ class Character:
             exclamation = random.choice(["Willickers!", "Wahoo!", "W00t!", "Bless your heart!", "Oh my god!", "Oh my goodness!", "Oooh.", "Cheers!", "Praise Helix!", "Yay!", "Woohoo!", "Golly gee!", "Wheeee~!", "Shiny!", "All glory to the Hypnotoad!", "Neato!", "Yesssss!!!", "Excellent!", "Great!"])
         else:
             exclamation = random.choice(["Fuck this!", "Shit!", "Nooooooooooooooo!", "Fuck this shit!", "Motherfucker!", "Crap!", "Oh dear!", "Aaaaaah!", "Zounds!", "God's blood!", "Fie!", "Tut", "Pooh!", "Merde!", "That sucks!", "Oh shit balls!", "Holy fish", "Damnit!", "Asscakes", "Uhoh!", "Derp!", "Balls!", "Oh no!", "Oy vey!"]) #add more of these too
-            printutils.formatdialog(self.pronouns,exclamation,"exclaimed")
+        printutils.formatdialog(self.pronouns,exclamation,"exclaimed")
 		
     def go(self):
         self.location.move_along(self,route)
@@ -271,7 +273,7 @@ class Character:
                 success=False
             
         if success and item.name not in keys(self.items) and (len(self.items) < capacity or 'Bag of Holding' in keys(self.items)):
-            print_single("#sub took the "+item.name+" from "+character.name+".")
+            printutils.print_single("#sub took the "+item.name+" from "+character.name+".")
             self.items[item.name]=item
             self.knowledge['items'][item.name]=item
             if len(self.items)>capacity:
@@ -287,11 +289,11 @@ class Character:
             self.leave(self.least_useful_item())
         
     def catch_thief(self):
-        warning = random.choice(["You'll pay if you do that again", "Hope you like the pokey", "You get a warning this time. Don't make me warn you again", "I'll let you go this time, but you better not be here when my big brother gets here", "STOP THIEF!", "Joke's on you. That one's a fake", "If i ever see your face again, I'm gonna give you an icepick lobotomy"]) #TODO: Add more of these
+        warning = random.choice(["You'll pay if you do that again", "Hope you like the pokey", "You get a warning this time. Don't make me warn you again", "I'll let you go this time, but you better not be here when my big brother gets here", "STOP THIEF!", "Joke's on you. That one's a fake", "If I ever see your face again, I'm gonna give you an icepick lobotomy","Drop it and put your hands up"]) #TODO: Add more of these
         printutils.formatdialog(self.pronouns,warning,"growled")
     
     def offer(self,character,item):
-        blahblah = random.choice(["I think you should have this #item","Take this #item. It could be useful","Well, I guess you can have this #item, then","It's dangerous to go alone! Take this #item","Hmm, you seem pretty okay, I guess. I have this old #item if you want it.","Take this #item and get! I've got work to do"])
+        blahblah = random.choice(["I think you should have this #item","Take this #item. It could be useful","Well, I guess you can have this #item, then","It's dangerous to go alone! Take this #item","Hmm, you seem pretty okay, I guess. I have this old #item if you want it","Take this #item and get! I've got work to do","You could probably use this #item better than I can","If I let you have this #item, will you get out of my hair?","You must really want this #item. Fine, take it"])
         blahblah.replace("#item",item.name)
         printutils.formatdialog(self.pronouns,blahblah,"offered")
         offered_item[character.name] = item
@@ -325,16 +327,16 @@ class Character:
     def pick_up(self,item):
         success = (item in self.location.items)
         if success and item.name not in keys(self.items) and (len(self.items) < capacity or 'Bag of Holding' in keys(self.items)):
-            print_single("#sub grabbed the "+item.name+".")
+            printutils.print_single("#sub grabbed the "+item.name+".")
             self.items[item.name]=item
             self.knowledge['items'][item.name]=item
             if len(items)>capacity:
                 bag = items['Bag of Holding']
                 moveitem = self.least_useful_item()
                 if moveitem==item:
-                    print_single("#sub couldn't find a way to carry or wear it, so #sub put it in #spos Bag of Holding.",self.pronouns)
+                    printutils.print_single("#sub couldn't find a way to carry or wear it, so #sub put it in #spos Bag of Holding.",self.pronouns)
                 else:
-                    print_single("#sub couldn't find a way to carry or wear it, so #sub put the "+moveitem.name+" in #spos Bag of Holding to make some space.",self.pronouns)
+                    printutils.print_single("#sub couldn't find a way to carry or wear it, so #sub put the "+moveitem.name+" in #spos Bag of Holding to make some space.",self.pronouns)
                 bag.add_subitem(moveitem)
                 items.remove(moveitem)
         else if success and item.name not in keys(self.items):
@@ -344,7 +346,7 @@ class Character:
             self.location.delete_item(item)
         
     def leave(self,item):
-        print_single("#sub tossed the "+item.name+" aside.",self.pronouns)
+        printutils.print_single("#sub tossed the "+item.name+" aside.",self.pronouns)
         if item.name in keys(self.items):
             self.items.remove(item)
             self.location.add_item(item)
@@ -360,7 +362,7 @@ class Character:
     def ask(self,character,obj):
 		#TODO: phrase information request sensibly
 		#Do you know anything about ...?
-        queries = random.choice(["Do you know anything about #thing?", "What do you know about #thing?", "What can you tell me about #thing?", "I beg you. Can you tell me about #thing?", "I don't mean to bother you, but would you please tell me about #thing?", "What would it take to convince you to tell me about #thing?"]) #TODO Add more of these
+        queries = random.choice(["Do you know anything about #thing?", "What do you know about #thing?", "What can you tell me about #thing?", "I beg you. Can you tell me about #thing?", "I don't mean to bother you, but would you please tell me about #thing?", "What would it take to convince you to tell me about #thing?", "Excuse me, do you know a thing or two about #thing?", "Could I bribe you to tell me about #thing?", "May I inquire about #thing?"]) #TODO Add more of these
         queries.replace("#thing", obj.name)
         printutils.formatdialog(self.pronouns, queries, "asked")
 		character.tell(self,obj)
