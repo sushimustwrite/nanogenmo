@@ -22,12 +22,37 @@ Doma Village:
 		-Protagovitch's bedroom
 		-Protagovitch's Outhouse
 		-Protagovitch's Well
+    -Mill
+    -Marshaski's House
+    -Bobski's House
+    -Peteski's House
+    -Gregski's House
+    -Cyndski's House
+    -Janski's House
+    -Village Green (entrance)
+Doma Meadow
+    -Goat King's Stack
+Oblako
+
 Zapovednik Forest
 	-Baba Yaga's House on Chicken Legs
+    -Centaur Village
 Prizrak Forest
     -Vucargorod
-The Distant Kingdom of Barbistan
+The Distant Kingdom of Barrrrrbistan
+    -Chez Doppelovsky
+    -Pirate Cove
+    -Black Market
+    -Accountants Guild
+    -Exorcist
+    -Mosque
+    -Castle
+    -Fireworks Maker
+    -Glaziery
+    -Pendulum Pit
+    -Harbor (entrance)
 Castle Zamok in Zamok Empire (requires a KEY, and besides ANTAGOVITCH IS NOT HOME - steal his CHARISMA ITEM?)
+    -Field (entrance)
     -Odinovski's Castle (BIG THICK WALLS)
     -Dvaski's Castle (wreathed in fire)
     -Triski's Castle (can clone himself-entire castle staff is just him)
@@ -43,12 +68,51 @@ Zhidky River
 Drugoy River
 Crabtown
 Magorod
+    -Castle
+    -Bashnya, Donovitch's Tower
+    -Market
+    -Tanner
+    -Smithy
+    -Cooper
+    -Cobbler
+    -Baker
+    -Butcher
+    -Candler
+    -College
+    -Stable
+    -Cathedral
+    -Apothecary
+    -Barber
+    -Inn
+    -Wall (entrance)
+    -Armory
 Odinokorod
+    -Castle
+    -Market
+    -Tanner
+    -Smithy
+    -Cooper
+    -Cobbler
+    -Baker
+    -Butcher
+    -Candler
+    -College
+    -Stable
+    -Cathedral
+    -Apothecary
+    -Barber
+    -Inn
+    -Wall (entrance)
+    -Armory
 Coracean
 Sukhoy Desert
 Shrifta (dwarf village)
+    -Dzungaria's House
+    -Minecart Hill (entrance)
 Boloto Swamp
 Random Villages (rumors)
+Crossroads
+Troll Cave
 
 
 Quest items:
@@ -77,25 +141,30 @@ Amulet of regeneration - from werewolf blood!
 perfect change purse (goat king) - used to buy food and get into the palace
 ghost ship (topielec) - fast travel to places adjacent to water
 
+Minor:
+Dwarves - Shrifta
+Snezana - Zaostrenny Mountains
 
 
 Monsters:
-Hammerhead Shark
-Firebird
-Trolls
-Doooooooolgo the Dragon ("That's an awfully long name." "It's an awfully long dragon.") ("What's long, brown and sticky, and breathes fire? Doooooooolgo!")
-Shtativ the Three-legged Ghost Bandit
-15 foot crabs
-Crab King
-Vila the Vila - chaotic neutral
-Topielec - drowned sailors
-Werewolves
-Pauk the giant Spider
-Goat Kingdom
-Pesoky the Sandworm
-R.O.U.S.es
-Psoglav
-The tempter arm-wrestling demon (what name again?)
-Ziz
+Hammerhead Shark - Syvatskala
+Firebird - Zhipovisny Mountains
+Troll - Troll Cave (near Zhipovisny)
+Doooooooolgo the Dragon ("That's an awfully long name." "It's an awfully long dragon.") ("What's long, brown and sticky, and breathes fire? Doooooooolgo!") - Zhipovisny Mountains
+Shtativ the Three-legged Ghost Bandit - Prizrak Forest
+15 foot crabs - Crabtown
+Crab King - Coracean
+Vila the Vila - chaotic neutral - Crossroads
+Topielec - drowned sailors - Glubok Sea
+Werewolves - Vucargorod
+Pauk the giant Spider - Zaostrenny Mountains
+Goat King - Doma Meadow
+Pesoky the Sandworm - Sukhoy Desert
+R.O.U.S.es - Boloto Swamp
+Psoglav - Psoglav Peak
+The tempter arm-wrestling demon Iskusitel(what name again?) - Doroga Road West
+Gamayun - Doroga Road East
+Centaurs - Zapovednik Forest
+Baba Yaga - Zapovednik Forest
 
-TODO: Where are these monsters?
+
