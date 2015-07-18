@@ -45,7 +45,13 @@ def print_single(string,pronouns,sentence=True):
     sys.stdout.write(return_single(string,pronouns,sentence))
     
 def return_double(string, pronouns1, pronouns2, sentence=True):
-    replacements = ("#sub1",pronouns1['subject']), ("#spos1", pronouns1['subj_possess']), ("#opos1", pronouns1['obj_possess']), ("#obj1",pronouns1['object']), ("#ref1", pronouns1['reflex']), ("#tobe1", pronouns1['tobe']), ("#sub2",pronouns2['subject']), ("#spos2", pronouns2['subj_possess']), ("#opos2", pronouns2['obj_possess']), ("#obj2",pronouns2['object']), ("#ref2", pronouns2['reflex']), ("#tobe2", pronouns2['tobe'])
+    if pronouns1 is not pronouns2:
+        replacements = ("#sub1",pronouns1['subject']), ("#spos1", pronouns1['subj_possess']), ("#opos1", pronouns1['obj_possess']), ("#obj1",pronouns1['object']), ("#ref1", pronouns1['reflex']), ("#tobe1", pronouns1['tobe']), ("#sub2",pronouns2['subject']), ("#spos2", pronouns2['subj_possess']), ("#opos2", pronouns2['obj_possess']), ("#obj2",pronouns2['object']), ("#ref2", pronouns2['reflex']), ("#tobe2", pronouns2['tobe'])
+    else:
+        if not pronouns1['plural']:
+            replacements = ("#sub1","the former"), ("#spos1", "the former's"), ("#opos1", "the former's"), ("#obj1","the former"), ("#ref1", pronouns1['reflex']), ("#tobe1", "the former was"), ("#sub2","the latter"), ("#spos2", "the latter's"), ("#opos2", "the latter's"), ("#obj2","the latter"), ("#ref2", pronouns2['reflex']), ("#tobe2", "the latter is")
+        else:
+            replacements = ("#sub1","the former"), ("#spos1", "the former's"), ("#opos1", "the former's"), ("#obj1","the former"), ("#ref1", pronouns1['reflex']), ("#tobe1", "the former was"), ("#sub2","the latter"), ("#spos2", "the latter's"), ("#opos2", "the latter's"), ("#obj2","the latter"), ("#ref2", pronouns2['reflex']), ("#tobe2", "the latter are")
     string = multiple_replace(string, *replacements)
     if pronouns1['plural']:
         string=pluralize(string,"#plu1")
@@ -107,4 +113,5 @@ if __name__=="__main__":
     new_paragraph()
     print_double("#sub1 did it for #obj2 because #sub2 could not do #spos2 task for #ref2.", masculine, feminine)
     print_double("#sub1 did it for #obj2 because #sub2 could not do #spos2 task for #ref2.", feminine, third_plural)
+    print_double("#sub1 did it for #obj2 because #sub2 could not do #spos2 task for #ref2.", feminine, feminine)
     new_paragraph()

@@ -4,7 +4,7 @@ import random, printutils, character, plot
 class Location:
    
 
-    def __init__(self, name, attributes, catchphrase=None)
+    def __init__(self, name, attributes, catchphrase=None, sublocations = None, entrance = None)
         how_many = random.randint(1,5)
         for i in range(how_many):
             generate_minor() #generates some number of minor chars
@@ -14,7 +14,11 @@ class Location:
         self.characters_present = []
         self.adjacent_routes = []
         self.items = []
-        self.sublocations = []
+        if sublocations == None:
+            self.sublocations = []
+        else:
+            self.sublocations = sublocations
+            self.entrance = entrance
 
     def delete_item(self, item):
         if item in items:
@@ -26,9 +30,11 @@ class Location:
 
     def arrive_character(character):
         adverb = random.choice(['Not long after that, ', 'Soon, ', 'Some time later, ', 'Eventually, ', 'Later, ', 'Soon afterwards, ', 'A short time passed before ', "It wasn't long before", "It took a while, but eventually ", "Things went swimmingly until ", "Nothing of import happened until ", "At long last, ", "It was easy going until ", "It rained a few times but nonetheless, soon ", "After a three day pause to recover from a violent bout of stomach flu, ", "One tall bottle of vodka later, ", "Just a hop, skip, and jump away, ", "After longer than #sub wanted, but sooner than #sub expected, ", "In the blink of an eye, ", "A few days later, ", "Before #sub'd even realized #sub'd left, ", "After getting lost and losing a day finding the way again, ", "Soon after #sub realized #sub could really use a bath, ", "Just when #sub was about to run out of food, ","A long week later, just before sunset, ", "Ready to give anything for a hot bath and a cozy bed, ", "None the worse for wear, ", "Before an agonizing case of leg chafing could render #obj immobile, ", "With #spos bowels screaming for mercy, #sub was glad #sub wouldn't have to dig a hole as ", "Just after 6AM on the third day, ",  "Weary from the long days of traveling, ", "Hoping the bath house was still open, ", "Wondering why #sub'd thought this was a good idea at all,", "With #spos sunburned neck blistering, ", "Just wishing to be home again for a few moments, ", "Itching for a long pull of vodka, ", "Rubbed raw from the road, ", "Glad to finally be somewhere, ", "Feeling a bit hangry, ", "Thinking about succulent pork roast, ", "Wishing #spos mom were here, ", "Just before losing all faith in humanity, "])
-        printutils.print_single(adverb+ "#sub arrived in "+location.name,self.pronouns)
+        printutils.print_single(adverb+ "#sub arrived in "+location.name+". "+location.catchphrase,self.pronouns)
         character.emote()
         characters_present.append(character)
+        if self.entrance is not None:
+            self.entrance.arrive_character(character)
         
     def delete_character(character):
         #see if character is in location
@@ -53,7 +59,7 @@ class Location:
                 route_found = True
                 break
         if route_found:
-            printutils.print_single(character.name+" set off down the "+route.name+" toward "+location.name+".",self.pronouns)
+            printutils.print_single(character.name+" set off down the "+route.name+" toward "+location.name+". "+route.attributes,self.pronouns)
             self.delete_character(character)
             if character is plot.protagonist and len(plot.p_rand_encounters)>0 and random.rand()<0.1:
                 encounter = random.choice(plot.p_rand_encounters)
@@ -141,12 +147,27 @@ class Sublocation(Location):
         self.parent = parent
         super(Sublocation, self).__init__(name, attributes, catchphrase)
         
+    def arrive_character(character):
+        adverb = random.choice(['Not long after that, ', 'Soon, ', 'Some time later, ', 'Eventually, ', 'Later, ', 'Soon afterwards, ', 'A short time passed before ', "It wasn't long before", "It took a while, but eventually ", "Things went swimmingly until ", "Nothing of import happened until ", "At long last, ", "It was easy going until ", "It rained a few times but nonetheless, soon ", "After a three day pause to recover from a violent bout of stomach flu, ", "One tall bottle of vodka later, ", "Just a hop, skip, and jump away, ", "After longer than #sub wanted, but sooner than #sub expected, ", "In the blink of an eye, ", "A few days later, ", "Before #sub'd even realized #sub'd left, ", "After getting lost and losing a day finding the way again, ", "Soon after #sub realized #sub could really use a bath, ", "Just when #sub was about to run out of food, ","A long week later, just before sunset, ", "Ready to give anything for a hot bath and a cozy bed, ", "None the worse for wear, ", "Before an agonizing case of leg chafing could render #obj immobile, ", "With #spos bowels screaming for mercy, #sub was glad #sub wouldn't have to dig a hole as ", "Just after 6AM on the third day, ",  "Weary from the long days of traveling, ", "Hoping the bath house was still open, ", "Wondering why #sub'd thought this was a good idea at all,", "With #spos sunburned neck blistering, ", "Just wishing to be home again for a few moments, ", "Itching for a long pull of vodka, ", "Rubbed raw from the road, ", "Glad to finally be somewhere, ", "Feeling a bit hangry, ", "Thinking about succulent pork roast, ", "Wishing #spos mom were here, ", "Just before losing all faith in humanity, "])
+        printutils.print_single(adverb+ "#sub was in "+location.name+". "+location.catchphrase,self.pronouns)
+        character.emote()
+        characters_present.append(character)
+        if self.entrance is not None:
+            self.entrance.arrive_character(character)
+        
 
 class Entrance(Sublocation):
-    pass
+    def arrive_character(character):
+        printutils.print_single("Shortly, #sub looked around and found #ref in the place through which all travelers first passed, "+location.name+". "+location.catchphrase,self.pronouns)
+        character.emote()
+        characters_present.append(character)
+        if self.entrance is not None:
+            self.entrance.arrive_character(character)
+    
 #TODO entrance needs to let us go to a completely different location on map (like from house to castle)
 
 class Route:
+    #attributes is a complete sentence describing the trail/path/road
     def __init__(self, name, attributes, endpoint1, endpoint2):
         self.name = name
         self.attributes = attributes

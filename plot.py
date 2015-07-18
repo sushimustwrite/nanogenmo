@@ -4,7 +4,9 @@ states = []
 major_characters = []
 items = []
 locations = []
+#this is a list of random encounters (Events) for the protagonist
 p_rand_encounters = []
+#this is a list of random encounters (Events) for the antagonist
 a_rand_encounters = []
 protagonist = None
 antagonist = None
