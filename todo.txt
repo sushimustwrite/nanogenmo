@@ -15,4 +15,3 @@ Map class: needs pathfinding algorithm. what else?
 
 add string prints to all of Character's actions
 
-write code to test printutils.py
