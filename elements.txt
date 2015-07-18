@@ -33,6 +33,11 @@ Doma Village:
 Doma Meadow
     -Goat King's Stack
 Oblako
+    -Well
+    -Idiot's House
+    -Vineyard
+    -Sex Dungeon
+    -Great Mana Tree
 
 Zapovednik Forest
 	-Baba Yaga's House on Chicken Legs
@@ -166,5 +171,6 @@ The tempter arm-wrestling demon Iskusitel(what name again?) - Doroga Road West
 Gamayun - Doroga Road East
 Centaurs - Zapovednik Forest
 Baba Yaga - Zapovednik Forest
+Ziz?
 
 

@@ -4,7 +4,7 @@ import random, printutils, character, plot
 class Location:
    
 
-    def __init__(self, name, attributes, catchphrase=None, sublocations = None, entrance = None)
+    def __init__(self, name, attributes, state, catchphrase=None, sublocations = None)
         how_many = random.randint(1,5)
         for i in range(how_many):
             generate_minor() #generates some number of minor chars
@@ -14,11 +14,12 @@ class Location:
         self.characters_present = []
         self.adjacent_routes = []
         self.items = []
+        self.state = state
         if sublocations == None:
             self.sublocations = []
         else:
             self.sublocations = sublocations
-            self.entrance = entrance
+            self.entrance = filter(lambda loc: loc is Entrance, sublocations)[0]
 
     def delete_item(self, item):
         if item in items:
@@ -51,11 +52,14 @@ class Location:
         if location is not in self.sublocations:
             self.sublocations.append(location)
             
+    def is_adjacent(self, location):
+        return len(filter(lambda route: route.get_destination(self), adjacent_routes))>0
+            
     #TODO: move a character from one place to another, possibly with random encounters along the way
     def move_along(character,location):
         route_found = False
         for route in adjacent_routes:
-            if route.getDestination(self) is location:
+            if route.get_destination(self) is location:
                 route_found = True
                 break
         if route_found:

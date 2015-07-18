@@ -187,21 +187,24 @@ class Character:
         myobj = remember(obj)
         if myobj is None:
             printutils.formatdialog(self.pronouns,"I'm afraid I don't know anything about that","said")
+            printutils.new_paragraph()
             return false
 		
         if type(myobj) is Location:
-            #TODO: say its catchphrase and attributes and up to five times either: a character who is there, a route that goes there, 
-            printutils.print_single("Ah, yes, I've been there. #catchphrase")
+            #TODO: say its catchphrase and attributes and up to five times either: a character who is there, a route that goes there, an item that's there
+            printutils.print_single("Ah, yes, I've been there. "+myobj.catchphrase+" "+myobj.attributes)
             for i in range(random.randInt(1,5)):
-                pass
-                
+                if i>0:
+                    
+                else:
+                    
                 #TODO: learn the asker the relevant info, add knowledge item to character's knowledge
-                return true
         if type(myobj) is Item:
             #TODO: say its catchphrase and attributes and up to five times either: where it is/who has it, what it does, or what it can accomplish (one state it can be used to get to)
             for i in range(random.randInt(1,5)):
                 pass
                 #TODO: learn the asker the relevant info
+            re
         if type(myobj) is Character:
             #TODO: say its catchphrase and attributes and up to five times either: their current location, their current goal, an item they have, a bit of history
             for i in range(random.randInt(1,5)):
@@ -213,6 +216,7 @@ class Character:
             else:
                 pass
                 #TODO: learn the asker all inputs to this state (yes i realize a person won't always know everything about how to achieve something, but we're going to assume they do to simiplify algorithms
+        return true
 
 				
         
