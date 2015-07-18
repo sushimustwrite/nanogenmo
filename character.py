@@ -193,7 +193,7 @@ class Character:
             #TODO: say its catchphrase and attributes and up to five times either: a character who is there, a route that goes there, 
             printutils.print_single("Ah, yes, I've been there. #catchphrase")
             for i in range(random.randInt(1,5)):
-                #pass
+                pass
                 
                 #TODO: learn the asker the relevant info, add knowledge item to character's knowledge
                 return true
@@ -205,7 +205,6 @@ class Character:
         if type(myobj) is Character:
             #TODO: say its catchphrase and attributes and up to five times either: their current location, their current goal, an item they have, a bit of history
             for i in range(random.randInt(1,5)):
-                printutils.formatdialog(self.pronouns,
                 pass
                 #TODO: learn the asker the relevant info
         if type(myobj) is State:
